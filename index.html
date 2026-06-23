@@ -2,6 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -91,6 +92,17 @@ html, body {
 
 .phone-notch {
   display: none;
+}
+
+/* Mobile: no dark background, handle safe areas */
+@media (max-width: 767px) {
+  html, body, .desktop-bg {
+    background-color: var(--avorio);
+  }
+  .phone-frame {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 /* Desktop Styles */
