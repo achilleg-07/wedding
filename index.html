@@ -1847,13 +1847,15 @@ a {
   }
 
   function openEnvelopeAndReveal() {
-    // Autoplay audio: funziona solo se c'è un gesto utente diretto (link ?pw= → click sigillo).
-    // Nel flusso form (password manuale) il gesto scade durante la chiamata async a getConfig.
-    // Se il play viene bloccato, il FAB ♪ pulsa visibilmente per invitare al click.
+    // Autoplay audio: solo la prima volta che si apre la busta.
+    // Dalla seconda volta in poi (es. reload della pagina), non parte in automatico.
     var audio = document.getElementById('bg-audio');
     var fab   = document.getElementById('fab-audio');
-    if (audio && audio.src) {
+    var hasPlayedBefore = localStorage.getItem('weddingAudioPlayed');
+    
+    if (audio && audio.src && !hasPlayedBefore) {
       audio.play().then(function () {
+        localStorage.setItem('weddingAudioPlayed', 'true');
         if (fab) {
           fab.classList.remove('attention');
           fab.classList.add('playing');
@@ -1865,6 +1867,12 @@ a {
           fab.title = 'Tocca per avviare la musica';
         }
       });
+    } else if (audio && audio.src && hasPlayedBefore) {
+      // Non avviamo in automatico, mostriamo solo l'icona normale o pulsante per invitare
+      if (fab) {
+        fab.classList.add('attention-strong');
+        fab.title = 'Tocca per avviare la musica';
+      }
     }
 
     document.getElementById('lock-error').hidden = true;
