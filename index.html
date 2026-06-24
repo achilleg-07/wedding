@@ -1783,7 +1783,9 @@ a {
 
   function attemptUnlock(pw, guestId, fromUser) {
     var btn = document.getElementById('lock-btn');
+    var origText = btn.textContent;
     btn.disabled = true;
+    btn.textContent = 'Apertura in corso…';
 
     function onSuccess(res) {
       if (!res) {
@@ -1791,6 +1793,7 @@ a {
         return;
       }
       btn.disabled = false;
+      btn.textContent = origText;
       if (res.ok) {
         PASSWORD = pw;
         render(res);
@@ -1815,6 +1818,7 @@ a {
 
     function onFailure(err) {
       btn.disabled = false;
+      btn.textContent = origText;
       document.getElementById('lock-form').hidden = false;
       var msg = (err && err.message) ? err.message : 'Si è verificato un errore. Riprova.';
       if (fromUser) {
