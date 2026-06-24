@@ -1895,7 +1895,7 @@ a {
 
     // Flag per attivare il limite "suona solo alla prima apertura in assoluto"
     // (Attualmente disattivato per le prove: l'audio partirà ad ogni ricarica pagina)
-    var ENABLE_PLAY_ONCE_ONLY = false;
+    var ENABLE_PLAY_ONCE_ONLY = true;
     var hasPlayedBefore = localStorage.getItem('weddingAudioPlayed');
 
     if (audio && audio.src) {
