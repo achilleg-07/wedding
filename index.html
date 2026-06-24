@@ -1745,7 +1745,7 @@ a {
   </div> <!-- fine desktop-bg -->
 
   <!-- Audio background -->
-  <audio id="bg-audio" loop preload="auto"></audio>
+  <audio id="bg-audio" src="mp3/audio.mp3" loop preload="auto"></audio>
 
   <!-- canvas-confetti library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
@@ -2400,7 +2400,9 @@ a {
     if (!url) return;
     var fab   = document.getElementById('fab-audio');
     var audio = document.getElementById('bg-audio');
-    audio.src = url;
+    if (url && !audio.src.endsWith(url)) {
+      audio.src = url;
+    }
     fab.hidden = false;
 
     // Pulsazione iniziale di attenzione (browser richiede interazione utente per avviare l'audio)
@@ -2753,11 +2755,7 @@ a {
 
     var duration = 3000;
     var animationEnd = Date.now() + duration;
-    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999999 };
-
-    function randomInRange(min, max) {
-      return Math.random() * (max - min) + min;
-    }
+    var defaults = { startVelocity: 45, spread: 90, ticks: 150, zIndex: 999999 };
 
     var interval = setInterval(function() {
       var timeLeft = animationEnd - Date.now();
@@ -2766,16 +2764,20 @@ a {
         return clearInterval(interval);
       }
 
-      var particleCount = 50 * (timeLeft / duration);
-      // Confetti left
+      var particleCount = Math.max(10, Math.floor(50 * (timeLeft / duration)));
+
+      // Cannone a sinistra
       window.confetti(Object.assign({}, defaults, {
         particleCount: particleCount,
-        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+        angle: 60,
+        origin: { x: 0, y: 0.8 }
       }));
-      // Confetti right
+
+      // Cannone a destra
       window.confetti(Object.assign({}, defaults, {
         particleCount: particleCount,
-        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+        angle: 120,
+        origin: { x: 1, y: 0.8 }
       }));
     }, 250);
   }
