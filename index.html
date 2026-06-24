@@ -233,9 +233,16 @@ a {
 }
 
 .envelope-wrap {
-  perspective: 1200px;
+  perspective: 1400px;
   width: min(86vw, 330px);
   margin-bottom: 0.5rem;
+  transform-style: preserve-3d;
+  animation: float-wrap 6s ease-in-out infinite;
+}
+
+@keyframes float-wrap {
+  0%, 100% { transform: translateY(0) rotateX(4deg) rotateY(-2deg); }
+  50% { transform: translateY(-12px) rotateX(-1deg) rotateY(2deg); }
 }
 
 .envelope {
@@ -243,7 +250,11 @@ a {
   width: 100%;
   aspect-ratio: 3/2;
   transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.envelope.open {
+  transform: translateY(60px) rotateX(25deg) scale(0.95);
 }
 
 .env-back {
@@ -251,7 +262,8 @@ a {
   inset: 0;
   background: linear-gradient(145deg, #f0e6d6 0%, #e2d3be 100%);
   border-radius: 8px;
-  box-shadow: var(--ombra-busta);
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.05), var(--ombra-busta);
+  transform: translateZ(-5px);
 }
 
 .env-side-l {
@@ -261,6 +273,7 @@ a {
   z-index: 2;
   background: linear-gradient(90deg, #d3c4ad, #e8ddc9);
   clip-path: polygon(0 0, 100% 50%, 0 100%);
+  transform: translateZ(2px);
 }
 
 .env-side-r {
@@ -270,6 +283,7 @@ a {
   z-index: 2;
   background: linear-gradient(270deg, #d3c4ad, #e8ddc9);
   clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  transform: translateZ(2px);
 }
 
 .env-front {
@@ -280,6 +294,7 @@ a {
   border-radius: 0 0 8px 8px;
   z-index: 3;
   clip-path: polygon(0 40%, 50% 100%, 100% 40%, 100% 100%, 0 100%);
+  transform: translateZ(3px);
 }
 
 .env-flap {
@@ -287,8 +302,8 @@ a {
   left: 0; right: 0; top: 0;
   height: 60%;
   transform-origin: top center;
-  transform: rotateX(0deg);
-  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(4px) rotateX(0deg);
+  transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
   transform-style: preserve-3d;
 }
@@ -321,7 +336,7 @@ a {
   position: absolute;
   top: 58%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateZ(6px);
   width: 52px;
   height: 52px;
   border-radius: 50%;
@@ -387,17 +402,17 @@ a {
 }
 
 .env-seal:active {
-  transform: translate(-50%, -50%) scale(0.92) !important;
+  transform: translate(-50%, -50%) translateZ(6px) scale(0.92) !important;
 }
 
 /* Opened Envelope State – ala ripiegata all'indietro, retro (inside) visibile */
 .envelope.open .env-flap {
-  transform: rotateX(-165deg);
+  transform: translateZ(4px) rotateX(-165deg);
   z-index: 10;
 }
 
 .env-seal.broken {
-  transform: translate(-50%, -50%) scale(1.15);
+  transform: translate(-50%, -50%) translateZ(6px) scale(1.15);
   opacity: 0;
   pointer-events: none;
 }
@@ -1717,6 +1732,9 @@ a {
   <!-- Audio background -->
   <audio id="bg-audio" loop preload="none"></audio>
 
+  <!-- canvas-confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
   <script>
     var EXEC_URL = "https://script.google.com/macros/s/AKfycbxjMLOtfrIK3g1ZWIjGC6vNiyp7OVnMtriYL61DiykDS6XS1_rV2JeBtMfvGeZfMWDm/exec";
     var _p       = new URLSearchParams(window.location.search);
@@ -1847,31 +1865,40 @@ a {
   }
 
   function openEnvelopeAndReveal() {
-    // Autoplay audio: solo la prima volta che si apre la busta.
-    // Dalla seconda volta in poi (es. reload della pagina), non parte in automatico.
+    // Autoplay audio: funziona solo se c'è un gesto utente diretto (link ?pw= → click sigillo).
+    // Nel flusso form (password manuale) il gesto scade durante la chiamata async a getConfig.
+    // Se il play viene bloccato, il FAB ♪ pulsa visibilmente per invitare al click.
     var audio = document.getElementById('bg-audio');
     var fab   = document.getElementById('fab-audio');
-    var hasPlayedBefore = localStorage.getItem('weddingAudioPlayed');
     
-    if (audio && audio.src && !hasPlayedBefore) {
-      audio.play().then(function () {
-        localStorage.setItem('weddingAudioPlayed', 'true');
-        if (fab) {
-          fab.classList.remove('attention');
-          fab.classList.add('playing');
-          fab.textContent = '♫';
-        }
-      }).catch(function () {
+    // Flag per attivare il limite "suona solo alla prima apertura in assoluto"
+    // (Attualmente disattivato per le prove: l'audio partirà ad ogni ricarica pagina)
+    var ENABLE_PLAY_ONCE_ONLY = false;
+    var hasPlayedBefore = localStorage.getItem('weddingAudioPlayed');
+
+    if (audio && audio.src) {
+      if (ENABLE_PLAY_ONCE_ONLY && hasPlayedBefore) {
+        // Non avviamo in automatico, mostriamo solo l'icona normale o pulsante per invitare
         if (fab) {
           fab.classList.add('attention-strong');
           fab.title = 'Tocca per avviare la musica';
         }
-      });
-    } else if (audio && audio.src && hasPlayedBefore) {
-      // Non avviamo in automatico, mostriamo solo l'icona normale o pulsante per invitare
-      if (fab) {
-        fab.classList.add('attention-strong');
-        fab.title = 'Tocca per avviare la musica';
+      } else {
+        audio.play().then(function () {
+          if (ENABLE_PLAY_ONCE_ONLY) {
+            localStorage.setItem('weddingAudioPlayed', 'true');
+          }
+          if (fab) {
+            fab.classList.remove('attention');
+            fab.classList.add('playing');
+            fab.textContent = '♫';
+          }
+        }).catch(function () {
+          if (fab) {
+            fab.classList.add('attention-strong');
+            fab.title = 'Tocca per avviare la musica';
+          }
+        });
       }
     }
 
