@@ -1767,9 +1767,17 @@ a {
       headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(Object.assign({ action: action }, params || {}))
     })
-    .then(function(r) { return r.json(); })
-    .then(function(result) { if (onSuccess) onSuccess(result); })
-    .catch(function(err)   { if (onFailure) onFailure(err);   });
+    .then(function(r) { return r.text(); })
+    .then(function(text) {
+      try {
+        var result = JSON.parse(text);
+        if (onSuccess) onSuccess(result);
+      } catch (e) {
+        console.error("Fetch response is not valid JSON. Response starts with:", text.substring(0, 100));
+        if (onFailure) onFailure(new Error("Configurazione server errata o permessi mancanti. Controlla la Web App su Apps Script."));
+      }
+    })
+    .catch(function(err) { if (onFailure) onFailure(err); });
   }
 
 
