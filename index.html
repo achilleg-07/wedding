@@ -117,18 +117,7 @@ html, body {
   }
   
   .phone-notch {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 140px;
-    height: 26px;
-    background: #1a1a1a;
-    border-bottom-left-radius: 18px;
-    border-bottom-right-radius: 18px;
-    z-index: 100;
-    pointer-events: none;
+    display: none;
   }
 }
 
@@ -297,14 +286,35 @@ a {
   position: absolute;
   left: 0; right: 0; top: 0;
   height: 60%;
-  background: linear-gradient(180deg, #ede3cf 0%, #dfd4bf 100%);
   transform-origin: top center;
   transform: rotateX(0deg);
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.1s 0.25s;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
+  transform-style: preserve-3d;
+}
+
+/* Fronte dell'ala (visibile chiusa) */
+.env-flap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #ede3cf 0%, #dfd4bf 100%);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+}
+
+/* Retro dell'ala (inside della busta, visibile quando aperta) */
+.env-flap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #f8f2e8 0%, #fff8f0 80%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform: rotateX(180deg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: inset 0 -6px 16px rgba(0, 0, 0, 0.07);
 }
 
 .env-seal {
@@ -380,10 +390,10 @@ a {
   transform: translate(-50%, -50%) scale(0.92) !important;
 }
 
-/* Opened Envelope State */
+/* Opened Envelope State – ala ripiegata all'indietro, retro (inside) visibile */
 .envelope.open .env-flap {
-  transform: rotateX(-180deg);
-  z-index: 1;
+  transform: rotateX(-165deg);
+  z-index: 10;
 }
 
 .env-seal.broken {
@@ -461,6 +471,7 @@ a {
   max-width: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .section {
@@ -1874,29 +1885,24 @@ a {
     setTimeout(function () {
       envelope.classList.add('open');
 
-      // Stato 3 (Estrazione): Slide-up completo dell'invito in 800ms (dopo i 500ms dell'apertura)
+      // Stato 3 (Estrazione): Slide-up dell'invito sopra il lock che dissolve
       setTimeout(function () {
         app.hidden = false;
+        app.style.zIndex = '60'; // emerge sopra il lock (z-index: 50)
         app.classList.add('letter-start');
 
-        // Forza rendering frame prima di rimuovere letter-start
         requestAnimationFrame(function () {
           requestAnimationFrame(function () {
             app.classList.remove('letter-start');
             app.classList.add('letter-reveal');
+            lock.classList.add('hide'); // fade-out del lock in parallelo allo slide-up
 
-            // Al termine dello slide-up dell'invito (800ms)
             setTimeout(function () {
-              // Dissoluzione e dismissione del layer busta
               lock.style.display = 'none';
-
-              // Sblocco dello scroll
+              app.style.zIndex = '';
               if (phoneContent) phoneContent.style.overflowY = 'auto';
               document.body.style.overflow = '';
-
               app.classList.remove('letter-reveal');
-
-              // Avvio delle animazioni allo scroll (Intersection Observer)
               wireScrollAnimations();
             }, 800);
           });
