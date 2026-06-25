@@ -1897,23 +1897,9 @@ a {
     var audio = document.getElementById('bg-audio');
     var fab   = document.getElementById('fab-audio');
 
-    // Flag per attivare il limite "suona solo alla prima apertura in assoluto"
-    // (Attualmente disattivato per le prove: l'audio partirà ad ogni ricarica pagina)
-    var ENABLE_PLAY_ONCE_ONLY = true;
-    var hasPlayedBefore = localStorage.getItem('weddingAudioPlayed');
-
     if (audio && audio.src) {
-      if (ENABLE_PLAY_ONCE_ONLY && hasPlayedBefore) {
-        // Non avviamo in automatico, mostriamo solo l'icona normale o pulsante per invitare
-        if (fab) {
-          fab.classList.add('attention-strong');
-          fab.title = 'Tocca per avviare la musica';
-        }
-      } else {
+      {
         audio.play().then(function () {
-          if (ENABLE_PLAY_ONCE_ONLY) {
-            localStorage.setItem('weddingAudioPlayed', 'true');
-          }
           if (fab) {
             fab.classList.remove('attention');
             fab.classList.add('playing');
