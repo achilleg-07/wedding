@@ -1856,13 +1856,9 @@ a {
       if (res.ok) {
         PASSWORD = pw;
         render(res);
-        if (fromUser) {
-          openEnvelopeAndReveal();
-        } else {
-          IS_UNLOCKED = true;
-          document.getElementById('lock-form').hidden = true;
-          document.getElementById('env-seal').classList.add('ready');
-        }
+        IS_UNLOCKED = true;
+        document.getElementById('lock-form').hidden = true;
+        document.getElementById('env-seal').classList.add('ready');
       } else {
         document.getElementById('lock-form').hidden = false;
         if (fromUser) {
