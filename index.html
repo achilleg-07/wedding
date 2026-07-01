@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -1482,6 +1483,18 @@ a {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Honeypot anti-bot — invisibile all'utente, visibile ai bot */
+.rsvp-hp-wrap {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
 </style>
 
 </head>
@@ -1683,7 +1696,7 @@ a {
             <p class="section-kicker">Conferma la tua presenza</p>
             <h2 id="rsvp-title" class="section-title">Ci sarete?</h2>
             <div class="gold-divider"></div>
-            <p class="section-sub rsvp-deadline">Conferma entro il 1° luglio 2027.</p>
+            <p id="rsvp-deadline" class="section-sub rsvp-deadline">Conferma entro il 1° luglio 2027.</p>
             <div id="rsvp-container" class="rsvp-container">
               <form id="rsvp-form" class="rsvp-form" autocomplete="off">
                 <div class="rsvp-label-field">
@@ -1704,6 +1717,11 @@ a {
                   <span>Messaggio o intolleranze</span>
                   <textarea id="rsvp-messaggio" class="rsvp-field rsvp-textarea"
                             placeholder="Segnala qui intolleranze alimentari o un messaggio per noi (opzionale)"></textarea>
+                </div>
+                <!-- Honeypot anti-bot: campo invisibile agli utenti, riempito solo dai bot -->
+                <div class="rsvp-hp-wrap" aria-hidden="true" tabindex="-1">
+                  <label for="rsvp-website">Sito web</label>
+                  <input id="rsvp-website" name="website" type="text" autocomplete="off" tabindex="-1">
                 </div>
                 <button type="submit" id="rsvp-btn" class="btn rsvp-submit">Conferma la presenza</button>
                 <p id="rsvp-error" class="rsvp-error" hidden></p>
@@ -1798,16 +1816,31 @@ a {
     var sealImg = document.querySelector('.seal-logo');
     if (sealImg) sealImg.src = LOGO_BASE64;
 
+    // Sblocco globale dell'audio (Safari Mac / iOS)
+    var audioUnlocked = false;
+    function unlockAudio() {
+      if (audioUnlocked) return;
+      var audio = document.getElementById('bg-audio');
+      if (audio) {
+        audio.volume = 0.01;
+        audio.play().then(function() {
+          audio.pause();
+          audio.currentTime = 0;
+          audio.volume = 1;
+          audioUnlocked = true;
+          document.removeEventListener('click', unlockAudio);
+          document.removeEventListener('touchstart', unlockAudio);
+        }).catch(function(e) {
+          // Ignora errori (es. blocco rigido del browser)
+        });
+      }
+    }
+    document.addEventListener('click', unlockAudio);
+    document.addEventListener('touchstart', unlockAudio);
+
     var form = document.getElementById('lock-form');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-
-      // Sblocca l'audio contestualmente al tocco dell'utente per superare i blocchi di Safari/Chrome
-      var audio = document.getElementById('bg-audio');
-      if (audio) {
-        audio.play().then(function() { audio.pause(); }).catch(function(e) { console.log('Audio unlock failed:', e); });
-      }
-
       var pw = document.getElementById('pwd').value.trim();
       if (!pw) return;
       attemptUnlock(pw, '', true);
@@ -1898,20 +1931,18 @@ a {
     var fab   = document.getElementById('fab-audio');
 
     if (audio && audio.src) {
-      {
-        audio.play().then(function () {
-          if (fab) {
-            fab.classList.remove('attention');
-            fab.classList.add('playing');
-            fab.textContent = '♫';
-          }
-        }).catch(function () {
-          if (fab) {
-            fab.classList.add('attention-strong');
-            fab.title = 'Tocca per avviare la musica';
-          }
-        });
-      }
+      audio.play().then(function () {
+        if (fab) {
+          fab.classList.remove('attention');
+          fab.classList.add('playing');
+          fab.textContent = '♫';
+        }
+      }).catch(function () {
+        if (fab) {
+          fab.classList.add('attention-strong');
+          fab.title = 'Tocca per avviare la musica';
+        }
+      });
     }
 
     document.getElementById('lock-error').hidden = true;
@@ -2083,6 +2114,7 @@ a {
     var rsvpSec = document.getElementById('rsvp-sec');
     if (c.attivaRsvp) {
       rsvpSec.hidden = false;
+      if (c.scadenzaRsvp) setText('rsvp-deadline', 'Conferma entro il ' + c.scadenzaRsvp + '.');
       wireRsvp();
     } else {
       rsvpSec.hidden = true;
@@ -2349,6 +2381,15 @@ a {
       return;
     }
 
+    // Honeypot anti-bot: se il campo nascosto è compilato, finge successo senza inviare
+    var hpField = document.getElementById('rsvp-website');
+    if (hpField && hpField.value) {
+      document.getElementById('rsvp-form').hidden = true;
+      document.getElementById('rsvp-success').hidden = false;
+      setText('rsvp-success-text', 'Presenza confermata. Non vediamo l\'ora di festeggiare con voi!');
+      return;
+    }
+
     // Prevenzione multi-submit e feedback spinner
     btn.disabled = true;
     btn.textContent = '';
@@ -2359,7 +2400,7 @@ a {
 
     var guestId = (typeof GUEST_ID !== 'undefined') ? GUEST_ID : '';
 
-    gasCall('submitRsvp', { password: PASSWORD, guestId: guestId, nome: nome, telefono: telefono, numPersone: numPers, messaggio: msg },
+    gasCall('submitRsvp', { password: PASSWORD, guestId: guestId, nome: nome, telefono: telefono, numPersone: numPers, messaggio: msg, honeypot: (document.getElementById('rsvp-website') || {}).value || '' },
       function (res) {
         btn.disabled = false;
         btn.textContent = 'Conferma la presenza';
