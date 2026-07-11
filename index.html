@@ -15,12 +15,20 @@
   --tenue: #706B63;
   --salvia: #768A70;
   --salvia-scuro: #5A6E55;
+  --salvia-scuro-hover: #4a5c46;
   --oro: #C5A059;
   --terracotta: #C87A53;
+  --terracotta-scuro: #b56742;
   --linea: #E8DDCB;
   --sfondo-desktop: #222621;
+  --salvia-rgb: 118, 138, 112;
+  --salvia-scuro-rgb: 90, 110, 85;
+  --oro-rgb: 197, 160, 89;
+  --terracotta-rgb: 200, 122, 83;
+  --inchiostro-rgb: 44, 42, 38;
+  --linea-rgb: 232, 221, 203;
   --satinato: rgba(255, 253, 249, 0.85);
-  --ombra-premium: 0 16px 36px rgba(44, 42, 38, 0.08), 0 4px 12px rgba(44, 42, 38, 0.04);
+  --ombra-premium: 0 16px 36px rgba(var(--inchiostro-rgb), 0.08), 0 4px 12px rgba(var(--inchiostro-rgb), 0.04);
   --ombra-busta: 0 30px 60px rgba(0, 0, 0, 0.12), 0 10px 25px rgba(0, 0, 0, 0.06);
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans: "Inter", system-ui, -apple-system, sans-serif;
@@ -57,8 +65,8 @@ html, body {
   align-items: center;
   background-color: var(--sfondo-desktop);
   background-image: 
-    radial-gradient(circle at 15% 15%, rgba(197, 160, 89, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 85% 85%, rgba(118, 138, 112, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 15% 15%, rgba(var(--oro-rgb), 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 85% 85%, rgba(var(--salvia-rgb), 0.06) 0%, transparent 50%),
     radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%);
   padding: 0;
 }
@@ -165,21 +173,21 @@ a {
   text-transform: uppercase;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(90, 110, 85, 0.2);
+  box-shadow: 0 4px 12px rgba(var(--salvia-scuro-rgb), 0.2);
   transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, box-shadow 0.2s;
   min-height: 46px;
   min-width: 140px;
 }
 
 .btn:hover {
-  background: #4a5c46;
-  box-shadow: 0 6px 16px rgba(90, 110, 85, 0.3);
+  background: var(--salvia-scuro-hover);
+  box-shadow: 0 6px 16px rgba(var(--salvia-scuro-rgb), 0.3);
   transform: translateY(-1px);
 }
 
 .btn:active {
   transform: scale(0.96) !important;
-  box-shadow: 0 2px 6px rgba(90, 110, 85, 0.15);
+  box-shadow: 0 2px 6px rgba(var(--salvia-scuro-rgb), 0.15);
   transition: transform 0.05s ease;
 }
 
@@ -191,7 +199,7 @@ a {
 }
 
 .btn-ghost:hover {
-  background: rgba(90, 110, 85, 0.06);
+  background: rgba(var(--salvia-scuro-rgb), 0.06);
   box-shadow: none;
 }
 
@@ -362,7 +370,7 @@ a {
   justify-content: center;
   overflow: hidden;
   box-shadow:
-    0 4px 15px rgba(200, 122, 83, 0.35),
+    0 4px 15px rgba(var(--terracotta-rgb), 0.35),
     inset 0 -2px 4px rgba(0, 0, 0, 0.2),
     inset 0 2px 4px rgba(255, 255, 255, 0.25);
   z-index: 12;
@@ -373,24 +381,24 @@ a {
 @keyframes pulse-seal {
   0% {
     box-shadow: 
-      0 4px 15px rgba(200, 122, 83, 0.35), 
+      0 4px 15px rgba(var(--terracotta-rgb), 0.35), 
       inset 0 -2px 4px rgba(0, 0, 0, 0.2), 
       inset 0 2px 4px rgba(255, 255, 255, 0.25),
-      0 0 0 0 rgba(200, 122, 83, 0.7);
+      0 0 0 0 rgba(var(--terracotta-rgb), 0.7);
   }
   70% {
     box-shadow: 
-      0 4px 15px rgba(200, 122, 83, 0.35), 
+      0 4px 15px rgba(var(--terracotta-rgb), 0.35), 
       inset 0 -2px 4px rgba(0, 0, 0, 0.2), 
       inset 0 2px 4px rgba(255, 255, 255, 0.25),
-      0 0 0 12px rgba(200, 122, 83, 0);
+      0 0 0 12px rgba(var(--terracotta-rgb), 0);
   }
   100% {
     box-shadow: 
-      0 4px 15px rgba(200, 122, 83, 0.35), 
+      0 4px 15px rgba(var(--terracotta-rgb), 0.35), 
       inset 0 -2px 4px rgba(0, 0, 0, 0.2), 
       inset 0 2px 4px rgba(255, 255, 255, 0.25),
-      0 0 0 0 rgba(200, 122, 83, 0);
+      0 0 0 0 rgba(var(--terracotta-rgb), 0);
   }
 }
 
@@ -475,17 +483,17 @@ a {
 #pwd:focus {
   outline: none;
   border-color: var(--salvia);
-  box-shadow: 0 0 0 3px rgba(118, 138, 112, 0.15);
+  box-shadow: 0 0 0 3px rgba(var(--salvia-rgb), 0.15);
 }
 
 #lock-btn {
   background: var(--terracotta);
-  box-shadow: 0 4px 12px rgba(200, 122, 83, 0.2);
+  box-shadow: 0 4px 12px rgba(var(--terracotta-rgb), 0.2);
 }
 
 #lock-btn:hover {
-  background: #b56742;
-  box-shadow: 0 6px 16px rgba(200, 122, 83, 0.3);
+  background: var(--terracotta-scuro);
+  box-shadow: 0 6px 16px rgba(var(--terracotta-rgb), 0.3);
 }
 
 .lock-error {
@@ -594,7 +602,7 @@ a {
 
 .cd-box {
   background: var(--carta);
-  border: 1px solid rgba(197, 160, 89, 0.2);
+  border: 1px solid rgba(var(--oro-rgb), 0.2);
   border-radius: 16px;
   padding: 0.75rem 0.5rem;
   width: 70px;
@@ -701,14 +709,14 @@ a {
   margin: 0 auto;
   padding: 2rem 1.5rem;
   background: var(--carta);
-  border: 1px solid rgba(232, 221, 203, 0.6);
+  border: 1px solid rgba(var(--linea-rgb), 0.6);
   border-radius: 24px;
-  box-shadow: 0 4px 12px rgba(44, 42, 38, 0.02);
+  box-shadow: 0 4px 12px rgba(var(--inchiostro-rgb), 0.02);
   transition: box-shadow 0.3s ease;
 }
 
 .famiglie:hover {
-  box-shadow: 0 8px 20px rgba(44, 42, 38, 0.04);
+  box-shadow: 0 8px 20px rgba(var(--inchiostro-rgb), 0.04);
 }
 
 .famiglia-col {
@@ -746,15 +754,15 @@ a {
   width: 44px;
   height: 44px;
   flex-shrink: 0;
-  background: rgba(200, 122, 83, 0.05);
+  background: rgba(var(--terracotta-rgb), 0.05);
   border-radius: 50%;
-  border: 1px dashed rgba(200, 122, 83, 0.25);
+  border: 1px dashed rgba(var(--terracotta-rgb), 0.25);
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .famiglie:hover .famiglia-sep {
-  background: rgba(200, 122, 83, 0.08);
-  border-color: rgba(200, 122, 83, 0.45);
+  background: rgba(var(--terracotta-rgb), 0.08);
+  border-color: rgba(var(--terracotta-rgb), 0.45);
 }
 
 .famiglia-sep svg {
@@ -810,7 +818,7 @@ a {
   position: relative;
   background: var(--sabbia);
   box-shadow: var(--ombra-premium);
-  border: 1px solid rgba(197, 160, 89, 0.15);
+  border: 1px solid rgba(var(--oro-rgb), 0.15);
 }
 
 .galleria-img {
@@ -847,7 +855,7 @@ a {
   left: 0;
   right: 0;
   padding: 1rem;
-  background: linear-gradient(to top, rgba(44, 42, 38, 0.8), transparent);
+  background: linear-gradient(to top, rgba(var(--inchiostro-rgb), 0.8), transparent);
   color: var(--carta);
   font-size: 0.85rem;
   font-family: var(--serif);
@@ -911,7 +919,7 @@ a {
 .tavolo-card {
   margin-top: 3.5rem;
   background: var(--carta);
-  border: 1px solid rgba(197, 160, 89, 0.25);
+  border: 1px solid rgba(var(--oro-rgb), 0.25);
   border-radius: 24px;
   padding: 2rem 1.5rem;
   box-shadow: var(--ombra-premium);
@@ -1159,7 +1167,7 @@ a {
 .regalo {
   margin-top: 3rem;
   background: var(--carta);
-  border: 1px solid rgba(197, 160, 89, 0.25);
+  border: 1px solid rgba(var(--oro-rgb), 0.25);
   border-radius: 24px;
   padding: 2rem 1.4rem;
   box-shadow: var(--ombra-premium);
@@ -1199,7 +1207,7 @@ a {
 
 .regola-card {
   background: var(--carta);
-  border: 1px solid rgba(232, 221, 203, 0.8);
+  border: 1px solid rgba(var(--linea-rgb), 0.8);
   border-radius: 18px;
   padding: 1.2rem;
   min-width: 140px;
@@ -1209,7 +1217,7 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 14px rgba(44, 42, 38, 0.03);
+  box-shadow: 0 4px 14px rgba(var(--inchiostro-rgb), 0.03);
 }
 
 .regola-icona {
@@ -1273,7 +1281,7 @@ a {
 .rsvp-field:focus {
   outline: none;
   border-color: var(--salvia);
-  box-shadow: 0 0 0 3px rgba(118, 138, 112, 0.12);
+  box-shadow: 0 0 0 3px rgba(var(--salvia-rgb), 0.12);
 }
 
 .rsvp-textarea {
@@ -1286,13 +1294,13 @@ a {
   padding: 1rem;
   font-size: 0.95rem;
   background: var(--terracotta);
-  box-shadow: 0 4px 14px rgba(200, 122, 83, 0.25);
+  box-shadow: 0 4px 14px rgba(var(--terracotta-rgb), 0.25);
   margin-top: 0.5rem;
 }
 
 .rsvp-submit:hover {
-  background: #b56742;
-  box-shadow: 0 6px 18px rgba(200, 122, 83, 0.35);
+  background: var(--terracotta-scuro);
+  box-shadow: 0 6px 18px rgba(var(--terracotta-rgb), 0.35);
 }
 
 .rsvp-error {
@@ -1388,7 +1396,7 @@ a {
   padding: 4rem 1.5rem 5rem;
   text-align: center;
   background: var(--salvia-scuro);
-  color: #F4EFE6;
+  color: var(--avorio);
   margin-top: auto;
 }
 
@@ -1453,7 +1461,7 @@ a {
 .fab-audio.attention-strong {
   animation: pulse-soft 1s ease-in-out infinite;
   background: var(--terracotta);
-  box-shadow: 0 0 0 4px rgba(200,122,83,0.35);
+  box-shadow: 0 0 0 4px rgba(var(--terracotta-rgb),0.35);
 }
 
 @keyframes rotate-slow {
@@ -1463,7 +1471,7 @@ a {
 
 @keyframes pulse-soft {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.08); box-shadow: 0 6px 20px rgba(200, 122, 83, 0.45); }
+  50% { transform: scale(1.08); box-shadow: 0 6px 20px rgba(var(--terracotta-rgb), 0.45); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1495,10 +1503,73 @@ a {
   opacity: 0;
   pointer-events: none;
 }
+
+/* ---------- Selettore Palette (solo anteprima) ---------- */
+.palette-switcher {
+  position: fixed;
+  top: max(12px, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--sans);
+}
+
+.palette-switcher-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #2C2A26;
+  padding-left: 2px;
+  white-space: nowrap;
+}
+
+.palette-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.palette-dot:hover {
+  transform: scale(1.1);
+}
+
+.palette-dot.active {
+  border-color: #2C2A26;
+  transform: scale(1.12);
+}
 </style>
 
 </head>
 <body>
+
+  <!-- Selettore palette colori (solo per anteprima/scelta) -->
+  <div class="palette-switcher" id="palette-switcher">
+    <span class="palette-switcher-label">Palette</span>
+    <button type="button" class="palette-dot" data-palette="salvia-oro"
+            style="background: linear-gradient(135deg, #768A70 50%, #C5A059 50%);"
+            title="1 · Salvia &amp; Oro" aria-label="Palette Salvia e Oro"></button>
+    <button type="button" class="palette-dot" data-palette="terracotta-miele"
+            style="background: linear-gradient(135deg, #A15E38 50%, #CC9A44 50%);"
+            title="2 · Terracotta &amp; Miele" aria-label="Palette Terracotta e Miele"></button>
+    <button type="button" class="palette-dot" data-palette="blu-rosa"
+            style="background: linear-gradient(135deg, #5D7385 50%, #B06B72 50%);"
+            title="3 · Blu Polvere &amp; Rosa Antico" aria-label="Palette Blu Polvere e Rosa Antico"></button>
+  </div>
 
   <!-- Wrapper per mockup desktop -->
   <div class="desktop-bg">
@@ -2813,6 +2884,105 @@ a {
     }, 250);
   }
 
+})();
+</script>
+
+<!-- Selettore palette colori: applica una delle 3 palette in tempo reale -->
+<script>
+(function () {
+  var PALETTES = {
+    'salvia-oro': {
+      '--avorio': '#FAF6EE',
+      '--sabbia': '#EFE6D8',
+      '--carta': '#FFFDF9',
+      '--inchiostro': '#2C2A26',
+      '--tenue': '#706B63',
+      '--salvia': '#768A70',
+      '--salvia-scuro': '#5A6E55',
+      '--salvia-scuro-hover': '#4a5c46',
+      '--oro': '#C5A059',
+      '--terracotta': '#C87A53',
+      '--terracotta-scuro': '#b56742',
+      '--linea': '#E8DDCB',
+      '--sfondo-desktop': '#222621',
+      '--salvia-rgb': '118, 138, 112',
+      '--salvia-scuro-rgb': '90, 110, 85',
+      '--oro-rgb': '197, 160, 89',
+      '--terracotta-rgb': '200, 122, 83',
+      '--inchiostro-rgb': '44, 42, 38',
+      '--linea-rgb': '232, 221, 203'
+    },
+    'terracotta-miele': {
+      '--avorio': '#FBF3EA',
+      '--sabbia': '#F2E1C8',
+      '--carta': '#FFFBF6',
+      '--inchiostro': '#332720',
+      '--tenue': '#7D695A',
+      '--salvia': '#C08659',
+      '--salvia-scuro': '#A15E38',
+      '--salvia-scuro-hover': '#84491F',
+      '--oro': '#CC9A44',
+      '--terracotta': '#B2472B',
+      '--terracotta-scuro': '#8F3720',
+      '--linea': '#EAD9BC',
+      '--sfondo-desktop': '#241C15',
+      '--salvia-rgb': '192, 134, 89',
+      '--salvia-scuro-rgb': '161, 94, 56',
+      '--oro-rgb': '204, 154, 68',
+      '--terracotta-rgb': '178, 71, 43',
+      '--inchiostro-rgb': '51, 39, 32',
+      '--linea-rgb': '234, 217, 188'
+    },
+    'blu-rosa': {
+      '--avorio': '#F7F5F1',
+      '--sabbia': '#E9E2D8',
+      '--carta': '#FFFFFB',
+      '--inchiostro': '#2B2A2E',
+      '--tenue': '#726F72',
+      '--salvia': '#8C9DAE',
+      '--salvia-scuro': '#5D7385',
+      '--salvia-scuro-hover': '#4A5D6C',
+      '--oro': '#C79A8B',
+      '--terracotta': '#B06B72',
+      '--terracotta-scuro': '#8F5359',
+      '--linea': '#DDE3E3',
+      '--sfondo-desktop': '#22262B',
+      '--salvia-rgb': '140, 157, 174',
+      '--salvia-scuro-rgb': '93, 115, 133',
+      '--oro-rgb': '199, 154, 139',
+      '--terracotta-rgb': '176, 107, 114',
+      '--inchiostro-rgb': '43, 42, 46',
+      '--linea-rgb': '221, 227, 227'
+    }
+  };
+
+  var STORAGE_KEY = 'wedding-palette';
+  var root = document.documentElement;
+  var switcher = document.getElementById('palette-switcher');
+  if (!switcher) return;
+  var dots = switcher.querySelectorAll('.palette-dot');
+
+  function applyPalette(name) {
+    var palette = PALETTES[name];
+    if (!palette) return;
+    Object.keys(palette).forEach(function (prop) {
+      root.style.setProperty(prop, palette[prop]);
+    });
+    dots.forEach(function (dot) {
+      dot.classList.toggle('active', dot.getAttribute('data-palette') === name);
+    });
+    try { localStorage.setItem(STORAGE_KEY, name); } catch (e) {}
+  }
+
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      applyPalette(dot.getAttribute('data-palette'));
+    });
+  });
+
+  var saved = null;
+  try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+  applyPalette(saved && PALETTES[saved] ? saved : 'salvia-oro');
 })();
 </script>
 
