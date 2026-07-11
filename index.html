@@ -1777,7 +1777,13 @@ a {
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
   <script>
-    var EXEC_URL = "https://script.google.com/macros/s/AKfycbxjMLOtfrIK3g1ZWIjGC6vNiyp7OVnMtriYL61DiykDS6XS1_rV2JeBtMfvGeZfMWDm/exec";
+    // Produzione: deployment versionato stabile. Test: deployment @HEAD (sempre
+    // l'ultimo codice salvato) su fogli/cartella foto separati (vedi setupTestEnv_ in Code.gs).
+    // In locale (file:// o localhost) si punta automaticamente al backend di test.
+    var PROD_EXEC_URL = "https://script.google.com/macros/s/AKfycbxjMLOtfrIK3g1ZWIjGC6vNiyp7OVnMtriYL61DiykDS6XS1_rV2JeBtMfvGeZfMWDm/exec";
+    var TEST_EXEC_URL = "https://script.google.com/macros/s/AKfycbw6CMz10CPFMxGN8oV3RkN34zfOCZ59A18cTQw5vAfX/exec";
+    var IS_LOCAL = ['localhost', '127.0.0.1', ''].indexOf(window.location.hostname) !== -1;
+    var EXEC_URL = IS_LOCAL ? TEST_EXEC_URL : PROD_EXEC_URL;
     var _p       = new URLSearchParams(window.location.search);
     var URL_PW   = _p.get('pw')       || '';
     var GUEST_ID = _p.get('guest_id') || '';
