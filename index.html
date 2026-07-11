@@ -8,25 +8,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --avorio: #FAF6EE;
-  --sabbia: #EFE6D8;
-  --carta: #FFFDF9;
-  --inchiostro: #2C2A26;
-  --tenue: #706B63;
-  --salvia: #768A70;
-  --salvia-scuro: #5A6E55;
-  --salvia-scuro-hover: #4a5c46;
-  --oro: #C5A059;
-  --terracotta: #C87A53;
-  --terracotta-scuro: #b56742;
-  --linea: #E8DDCB;
-  --sfondo-desktop: #222621;
-  --salvia-rgb: 118, 138, 112;
-  --salvia-scuro-rgb: 90, 110, 85;
-  --oro-rgb: 197, 160, 89;
-  --terracotta-rgb: 200, 122, 83;
-  --inchiostro-rgb: 44, 42, 38;
-  --linea-rgb: 232, 221, 203;
+  --avorio: #FBF6F4;
+  --sabbia: #F1DEDD;
+  --carta: #FFFFFF;
+  --inchiostro: #1B2436;
+  --tenue: #6E6B72;
+  --salvia: #345480;
+  --salvia-scuro: #1F3557;
+  --salvia-scuro-hover: #16273F;
+  --oro: #D9A9AA;
+  --terracotta: #C98089;
+  --terracotta-scuro: #A9636C;
+  --linea: #EFDBDA;
+  --sfondo-desktop: #131B2B;
+  --salvia-rgb: 52, 84, 128;
+  --salvia-scuro-rgb: 31, 53, 87;
+  --oro-rgb: 217, 169, 170;
+  --terracotta-rgb: 201, 128, 137;
+  --inchiostro-rgb: 27, 36, 54;
+  --linea-rgb: 239, 219, 218;
   --satinato: rgba(255, 253, 249, 0.85);
   --ombra-premium: 0 16px 36px rgba(var(--inchiostro-rgb), 0.08), 0 4px 12px rgba(var(--inchiostro-rgb), 0.04);
   --ombra-busta: 0 30px 60px rgba(0, 0, 0, 0.12), 0 10px 25px rgba(0, 0, 0, 0.06);
@@ -1560,15 +1560,15 @@ a {
   <!-- Selettore palette colori (solo per anteprima/scelta) -->
   <div class="palette-switcher" id="palette-switcher">
     <span class="palette-switcher-label">Palette</span>
-    <button type="button" class="palette-dot" data-palette="salvia-oro"
-            style="background: linear-gradient(135deg, #768A70 50%, #C5A059 50%);"
-            title="1 · Salvia &amp; Oro" aria-label="Palette Salvia e Oro"></button>
-    <button type="button" class="palette-dot" data-palette="terracotta-miele"
-            style="background: linear-gradient(135deg, #A15E38 50%, #CC9A44 50%);"
-            title="2 · Terracotta &amp; Miele" aria-label="Palette Terracotta e Miele"></button>
-    <button type="button" class="palette-dot" data-palette="blu-rosa"
-            style="background: linear-gradient(135deg, #5D7385 50%, #B06B72 50%);"
-            title="3 · Blu Polvere &amp; Rosa Antico" aria-label="Palette Blu Polvere e Rosa Antico"></button>
+    <button type="button" class="palette-dot" data-palette="navy-cipria"
+            style="background: linear-gradient(135deg, #1F3557 50%, #D9A9AA 50%);"
+            title="1 · Blu Navy &amp; Rosa Cipria" aria-label="Palette Blu Navy e Rosa Cipria"></button>
+    <button type="button" class="palette-dot" data-palette="navy-salvia"
+            style="background: linear-gradient(135deg, #1F3557 50%, #83A374 50%);"
+            title="2 · Blu Navy &amp; Bianco, Verde Salvia" aria-label="Palette Blu Navy, Bianco e Verde Salvia"></button>
+    <button type="button" class="palette-dot" data-palette="navy-polvere"
+            style="background: linear-gradient(135deg, #1F3557 50%, #9FB7CC 50%);"
+            title="3 · Blu Navy &amp; Azzurro Polvere" aria-label="Palette Blu Navy e Azzurro Polvere"></button>
   </div>
 
   <!-- Wrapper per mockup desktop -->
@@ -2891,68 +2891,68 @@ a {
 <script>
 (function () {
   var PALETTES = {
-    'salvia-oro': {
-      '--avorio': '#FAF6EE',
-      '--sabbia': '#EFE6D8',
-      '--carta': '#FFFDF9',
-      '--inchiostro': '#2C2A26',
-      '--tenue': '#706B63',
-      '--salvia': '#768A70',
-      '--salvia-scuro': '#5A6E55',
-      '--salvia-scuro-hover': '#4a5c46',
-      '--oro': '#C5A059',
-      '--terracotta': '#C87A53',
-      '--terracotta-scuro': '#b56742',
-      '--linea': '#E8DDCB',
-      '--sfondo-desktop': '#222621',
-      '--salvia-rgb': '118, 138, 112',
-      '--salvia-scuro-rgb': '90, 110, 85',
-      '--oro-rgb': '197, 160, 89',
-      '--terracotta-rgb': '200, 122, 83',
-      '--inchiostro-rgb': '44, 42, 38',
-      '--linea-rgb': '232, 221, 203'
+    'navy-cipria': {
+      '--avorio': '#FBF6F4',
+      '--sabbia': '#F1DEDD',
+      '--carta': '#FFFFFF',
+      '--inchiostro': '#1B2436',
+      '--tenue': '#6E6B72',
+      '--salvia': '#345480',
+      '--salvia-scuro': '#1F3557',
+      '--salvia-scuro-hover': '#16273F',
+      '--oro': '#D9A9AA',
+      '--terracotta': '#C98089',
+      '--terracotta-scuro': '#A9636C',
+      '--linea': '#EFDBDA',
+      '--sfondo-desktop': '#131B2B',
+      '--salvia-rgb': '52, 84, 128',
+      '--salvia-scuro-rgb': '31, 53, 87',
+      '--oro-rgb': '217, 169, 170',
+      '--terracotta-rgb': '201, 128, 137',
+      '--inchiostro-rgb': '27, 36, 54',
+      '--linea-rgb': '239, 219, 218'
     },
-    'terracotta-miele': {
-      '--avorio': '#FBF3EA',
-      '--sabbia': '#F2E1C8',
-      '--carta': '#FFFBF6',
-      '--inchiostro': '#332720',
-      '--tenue': '#7D695A',
-      '--salvia': '#C08659',
-      '--salvia-scuro': '#A15E38',
-      '--salvia-scuro-hover': '#84491F',
-      '--oro': '#CC9A44',
-      '--terracotta': '#B2472B',
-      '--terracotta-scuro': '#8F3720',
-      '--linea': '#EAD9BC',
-      '--sfondo-desktop': '#241C15',
-      '--salvia-rgb': '192, 134, 89',
-      '--salvia-scuro-rgb': '161, 94, 56',
-      '--oro-rgb': '204, 154, 68',
-      '--terracotta-rgb': '178, 71, 43',
-      '--inchiostro-rgb': '51, 39, 32',
-      '--linea-rgb': '234, 217, 188'
+    'navy-salvia': {
+      '--avorio': '#FBFCF9',
+      '--sabbia': '#EAF0E4',
+      '--carta': '#FFFFFF',
+      '--inchiostro': '#1B2436',
+      '--tenue': '#666F63',
+      '--salvia': '#345480',
+      '--salvia-scuro': '#1F3557',
+      '--salvia-scuro-hover': '#16273F',
+      '--oro': '#83A374',
+      '--terracotta': '#5F7E54',
+      '--terracotta-scuro': '#4A6641',
+      '--linea': '#DCE7D5',
+      '--sfondo-desktop': '#131B2B',
+      '--salvia-rgb': '52, 84, 128',
+      '--salvia-scuro-rgb': '31, 53, 87',
+      '--oro-rgb': '131, 163, 116',
+      '--terracotta-rgb': '95, 126, 84',
+      '--inchiostro-rgb': '27, 36, 54',
+      '--linea-rgb': '220, 231, 213'
     },
-    'blu-rosa': {
-      '--avorio': '#F7F5F1',
-      '--sabbia': '#E9E2D8',
-      '--carta': '#FFFFFB',
-      '--inchiostro': '#2B2A2E',
-      '--tenue': '#726F72',
-      '--salvia': '#8C9DAE',
-      '--salvia-scuro': '#5D7385',
-      '--salvia-scuro-hover': '#4A5D6C',
-      '--oro': '#C79A8B',
-      '--terracotta': '#B06B72',
-      '--terracotta-scuro': '#8F5359',
-      '--linea': '#DDE3E3',
-      '--sfondo-desktop': '#22262B',
-      '--salvia-rgb': '140, 157, 174',
-      '--salvia-scuro-rgb': '93, 115, 133',
-      '--oro-rgb': '199, 154, 139',
-      '--terracotta-rgb': '176, 107, 114',
-      '--inchiostro-rgb': '43, 42, 46',
-      '--linea-rgb': '221, 227, 227'
+    'navy-polvere': {
+      '--avorio': '#F6F8FA',
+      '--sabbia': '#E1E9F0',
+      '--carta': '#FFFFFF',
+      '--inchiostro': '#1B2436',
+      '--tenue': '#667080',
+      '--salvia': '#345480',
+      '--salvia-scuro': '#1F3557',
+      '--salvia-scuro-hover': '#16273F',
+      '--oro': '#9FB7CC',
+      '--terracotta': '#6D8FAA',
+      '--terracotta-scuro': '#55728A',
+      '--linea': '#DCE6EF',
+      '--sfondo-desktop': '#131B2B',
+      '--salvia-rgb': '52, 84, 128',
+      '--salvia-scuro-rgb': '31, 53, 87',
+      '--oro-rgb': '159, 183, 204',
+      '--terracotta-rgb': '109, 143, 170',
+      '--inchiostro-rgb': '27, 36, 54',
+      '--linea-rgb': '220, 230, 239'
     }
   };
 
@@ -2982,7 +2982,7 @@ a {
 
   var saved = null;
   try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
-  applyPalette(saved && PALETTES[saved] ? saved : 'salvia-oro');
+  applyPalette(saved && PALETTES[saved] ? saved : 'navy-cipria');
 })();
 </script>
 
