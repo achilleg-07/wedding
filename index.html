@@ -16,17 +16,17 @@
   --salvia: #34506F;
   --salvia-scuro: #16233F;
   --salvia-scuro-hover: #0F1930;
-  --oro: #BD7F82;
-  --terracotta: #BD7F82;
-  --terracotta-scuro: #9C6265;
-  --linea: #EFDBDA;
+  --oro: #7C93B0;
+  --terracotta: #7C93B0;
+  --terracotta-scuro: #5C7590;
+  --linea: #DCE6EF;
   --sfondo-desktop: #0F1930;
   --salvia-rgb: 52, 80, 111;
   --salvia-scuro-rgb: 22, 35, 63;
-  --oro-rgb: 189, 127, 130;
-  --terracotta-rgb: 189, 127, 130;
+  --oro-rgb: 124, 147, 176;
+  --terracotta-rgb: 124, 147, 176;
   --inchiostro-rgb: 22, 35, 63;
-  --linea-rgb: 239, 219, 218;
+  --linea-rgb: 220, 230, 239;
   --satinato: rgba(255, 253, 249, 0.85);
   --ombra-premium: 0 16px 36px rgba(var(--inchiostro-rgb), 0.08), 0 4px 12px rgba(var(--inchiostro-rgb), 0.04);
   --ombra-busta: 0 30px 60px rgba(0, 0, 0, 0.12), 0 10px 25px rgba(0, 0, 0, 0.06);
@@ -1503,73 +1503,10 @@ a {
   opacity: 0;
   pointer-events: none;
 }
-
-/* ---------- Selettore Palette (solo anteprima) ---------- */
-.palette-switcher {
-  position: fixed;
-  top: max(12px, env(safe-area-inset-top));
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 12px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 999px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  font-family: var(--sans);
-}
-
-.palette-switcher-label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #2C2A26;
-  padding-left: 2px;
-  white-space: nowrap;
-}
-
-.palette-dot {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  padding: 0;
-  cursor: pointer;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
-  transition: transform 0.15s ease, border-color 0.15s ease;
-}
-
-.palette-dot:hover {
-  transform: scale(1.1);
-}
-
-.palette-dot.active {
-  border-color: #2C2A26;
-  transform: scale(1.12);
-}
 </style>
 
 </head>
 <body>
-
-  <!-- Selettore palette colori (solo per anteprima/scelta) -->
-  <div class="palette-switcher" id="palette-switcher">
-    <span class="palette-switcher-label">Palette</span>
-    <button type="button" class="palette-dot" data-palette="navy-cipria"
-            style="background: linear-gradient(135deg, #16233F 50%, #BD7F82 50%);"
-            title="1 · Blu Navy &amp; Rosa Cipria" aria-label="Palette Blu Navy e Rosa Cipria"></button>
-    <button type="button" class="palette-dot" data-palette="navy-salvia"
-            style="background: linear-gradient(135deg, #16233F 50%, #7C9473 50%);"
-            title="2 · Blu Navy &amp; Bianco, Verde Salvia" aria-label="Palette Blu Navy, Bianco e Verde Salvia"></button>
-    <button type="button" class="palette-dot" data-palette="navy-polvere"
-            style="background: linear-gradient(135deg, #16233F 50%, #7C93B0 50%);"
-            title="3 · Blu Navy &amp; Azzurro Polvere" aria-label="Palette Blu Navy e Azzurro Polvere"></button>
-  </div>
 
   <!-- Wrapper per mockup desktop -->
   <div class="desktop-bg">
@@ -2884,105 +2821,6 @@ a {
     }, 250);
   }
 
-})();
-</script>
-
-<!-- Selettore palette colori: applica una delle 3 palette in tempo reale -->
-<script>
-(function () {
-  var PALETTES = {
-    'navy-cipria': {
-      '--avorio': '#F8F7F5',
-      '--sabbia': '#EFEEEA',
-      '--carta': '#FFFFFF',
-      '--inchiostro': '#16233F',
-      '--tenue': '#6B6E76',
-      '--salvia': '#34506F',
-      '--salvia-scuro': '#16233F',
-      '--salvia-scuro-hover': '#0F1930',
-      '--oro': '#BD7F82',
-      '--terracotta': '#BD7F82',
-      '--terracotta-scuro': '#9C6265',
-      '--linea': '#EFDBDA',
-      '--sfondo-desktop': '#0F1930',
-      '--salvia-rgb': '52, 80, 111',
-      '--salvia-scuro-rgb': '22, 35, 63',
-      '--oro-rgb': '189, 127, 130',
-      '--terracotta-rgb': '189, 127, 130',
-      '--inchiostro-rgb': '22, 35, 63',
-      '--linea-rgb': '239, 219, 218'
-    },
-    'navy-salvia': {
-      '--avorio': '#F8F7F5',
-      '--sabbia': '#EFEEEA',
-      '--carta': '#FFFFFF',
-      '--inchiostro': '#16233F',
-      '--tenue': '#6B6E76',
-      '--salvia': '#34506F',
-      '--salvia-scuro': '#16233F',
-      '--salvia-scuro-hover': '#0F1930',
-      '--oro': '#7C9473',
-      '--terracotta': '#7C9473',
-      '--terracotta-scuro': '#5F7657',
-      '--linea': '#DCE7D5',
-      '--sfondo-desktop': '#0F1930',
-      '--salvia-rgb': '52, 80, 111',
-      '--salvia-scuro-rgb': '22, 35, 63',
-      '--oro-rgb': '124, 148, 115',
-      '--terracotta-rgb': '124, 148, 115',
-      '--inchiostro-rgb': '22, 35, 63',
-      '--linea-rgb': '220, 231, 213'
-    },
-    'navy-polvere': {
-      '--avorio': '#F8F7F5',
-      '--sabbia': '#EFEEEA',
-      '--carta': '#FFFFFF',
-      '--inchiostro': '#16233F',
-      '--tenue': '#6B6E76',
-      '--salvia': '#34506F',
-      '--salvia-scuro': '#16233F',
-      '--salvia-scuro-hover': '#0F1930',
-      '--oro': '#7C93B0',
-      '--terracotta': '#7C93B0',
-      '--terracotta-scuro': '#5C7590',
-      '--linea': '#DCE6EF',
-      '--sfondo-desktop': '#0F1930',
-      '--salvia-rgb': '52, 80, 111',
-      '--salvia-scuro-rgb': '22, 35, 63',
-      '--oro-rgb': '124, 147, 176',
-      '--terracotta-rgb': '124, 147, 176',
-      '--inchiostro-rgb': '22, 35, 63',
-      '--linea-rgb': '220, 230, 239'
-    }
-  };
-
-  var STORAGE_KEY = 'wedding-palette';
-  var root = document.documentElement;
-  var switcher = document.getElementById('palette-switcher');
-  if (!switcher) return;
-  var dots = switcher.querySelectorAll('.palette-dot');
-
-  function applyPalette(name) {
-    var palette = PALETTES[name];
-    if (!palette) return;
-    Object.keys(palette).forEach(function (prop) {
-      root.style.setProperty(prop, palette[prop]);
-    });
-    dots.forEach(function (dot) {
-      dot.classList.toggle('active', dot.getAttribute('data-palette') === name);
-    });
-    try { localStorage.setItem(STORAGE_KEY, name); } catch (e) {}
-  }
-
-  dots.forEach(function (dot) {
-    dot.addEventListener('click', function () {
-      applyPalette(dot.getAttribute('data-palette'));
-    });
-  });
-
-  var saved = null;
-  try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
-  applyPalette(saved && PALETTES[saved] ? saved : 'navy-cipria');
 })();
 </script>
 
