@@ -24,7 +24,7 @@
   <link rel="preload" as="image" href="acquarello/chiesa.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <style>
 
 :root {
@@ -1542,6 +1542,8 @@ body, .phone-frame { font-family: var(--serif); }
 .sposi { word-spacing: 0.12em; font-size: clamp(2.5rem, 12vw, 3.9rem); line-height: 1.1; color: var(--terracotta-scuro);
   white-space: normal; text-wrap: balance; max-width: 100%; overflow-wrap: anywhere; }
 .data-nozze { font-size: 1.7rem; letter-spacing: 0.02em; color: var(--terracotta-scuro); }
+/* A iniziale dei nomi in Alex Brush: a punta, con la traversa che incrocia, come nel monogramma */
+.A-iniziale { font-family: "Alex Brush", var(--script); }
 .section-kicker, .kicker { font-family: var(--serif); font-weight: 500; letter-spacing: 0.28em; color: var(--terracotta); }
 .btn { font-family: var(--serif); font-weight: 500; letter-spacing: 0.1em; font-size: 0.8rem; }
 .orario, .luogo-nome { font-family: var(--script); font-size: 2rem; color: var(--terracotta-scuro); }
@@ -2100,7 +2102,7 @@ body, .phone-frame { font-family: var(--serif); }
       gasCall('getPhotoInfo', {},
         function (res) {
           if (!res || !res.ok) { showClosed('Non riusciamo a collegarci. Riprova tra un istante.'); return; }
-          if (res.titolo) { var n = document.getElementById('foto-names'); n.textContent = res.titolo; n.hidden = false; }
+          if (res.titolo) { var n = document.getElementById('foto-names'); setSposi(n, res.titolo); n.hidden = false; }
           if (res.aperta) { actions.hidden = false; wireFoto(); return; }
           var oggi = new Date(); var iso = oggi.getFullYear() + '-' + pad(oggi.getMonth() + 1) + '-' + pad(oggi.getDate());
           showClosed(res.dal && iso < res.dal
@@ -2238,7 +2240,7 @@ body, .phone-frame { font-family: var(--serif); }
     var c = res.config || {};
 
     // Hero
-    setText('titolo-sposi', c.titoloSposi);
+    setSposi(document.getElementById('titolo-sposi'), c.titoloSposi);
     setText('data-nozze', formatDataNozze(c.dataNozze, c.oraNozze));
     setText('testo-partecipazione', c.testoPartecipazione);
 
@@ -3047,6 +3049,19 @@ body, .phone-frame { font-family: var(--serif); }
 
   function clear(node) {
     while (node && node.firstChild) node.removeChild(node.firstChild);
+  }
+
+  // Nomi degli sposi: la A iniziale in Alex Brush (come la A del monogramma), il resto in Great Vibes.
+  function setSposi(node, value) {
+    if (!node) return;
+    var t = value == null ? '' : String(value);
+    node.textContent = '';
+    if (t.charAt(0) !== 'A') { node.textContent = t; return; }
+    var a = document.createElement('span');
+    a.className = 'A-iniziale';
+    a.textContent = 'A';
+    node.appendChild(a);
+    node.appendChild(document.createTextNode(t.slice(1)));
   }
 
   function setText(id, value) {
