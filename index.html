@@ -1,0 +1,3142 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <!-- Solo risorse attese: il sito, Google Fonts, jsDelivr (confetti) e il backend Apps Script -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' https:; connect-src https://script.google.com https://script.googleusercontent.com; worker-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Achille &amp; Chiara · Ci sposiamo</title>
+  <meta name="description" content="Apri la busta: il nostro invito vi aspetta.">
+  <meta name="theme-color" content="#FBF7F0">
+  <!-- Anteprima quando il link viene condiviso (WhatsApp, Telegram, iMessage...) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Achille &amp; Chiara · Ci sposiamo">
+  <meta property="og:description" content="Apri la busta: il nostro invito vi aspetta.">
+  <meta property="og:image" content="https://achilleg-07.github.io/wedding/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preload" as="image" href="acquarello/chiesa.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+
+:root {
+  --avorio: #F8F7F5;
+  --sabbia: #EFEEEA;
+  --carta: #FFFFFF;
+  --inchiostro: #16233F;
+  --tenue: #6B6E76;
+  --salvia: #34506F;
+  --salvia-scuro: #16233F;
+  --salvia-scuro-hover: #0F1930;
+  --oro: #7C93B0;
+  --terracotta: #56708C;
+  --terracotta-scuro: #45607C;
+  --linea: #DCE6EF;
+  --sfondo-desktop: #0F1930;
+  --salvia-rgb: 52, 80, 111;
+  --salvia-scuro-rgb: 22, 35, 63;
+  --oro-rgb: 124, 147, 176;
+  --terracotta-rgb: 86, 112, 140;
+  --inchiostro-rgb: 22, 35, 63;
+  --linea-rgb: 220, 230, 239;
+  --satinato: rgba(255, 253, 249, 0.85);
+  --ombra-premium: 0 16px 36px rgba(var(--inchiostro-rgb), 0.08), 0 4px 12px rgba(var(--inchiostro-rgb), 0.04);
+  --ombra-busta: 0 30px 60px rgba(0, 0, 0, 0.12), 0 10px 25px rgba(0, 0, 0, 0.06);
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Inter", system-ui, -apple-system, sans-serif;
+  --blur: blur(12px);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--sfondo-desktop);
+  font-family: var(--sans);
+  color: var(--inchiostro);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Desktop Frame & Wrapper ---------- */
+.desktop-bg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--sfondo-desktop);
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(var(--oro-rgb), 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 85% 85%, rgba(var(--salvia-rgb), 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%);
+  padding: 0;
+}
+
+.phone-frame {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  background: var(--avorio);
+  position: relative;
+  overflow: hidden;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-content {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none;
+}
+
+.phone-content::-webkit-scrollbar {
+  display: none;
+}
+
+.phone-notch {
+  display: none;
+}
+
+/* Mobile: no dark background, handle safe areas */
+@media (max-width: 767px) {
+  html, body, .desktop-bg {
+    background-color: var(--avorio);
+  }
+  .phone-frame {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+  .phone-frame {
+    max-width: 420px;
+    height: 90vh;
+    max-height: 860px;
+    border-radius: 44px;
+    border: 12px solid #1a1a1a;
+    box-shadow: var(--ombra-busta);
+  }
+  
+  .phone-notch {
+    display: none;
+  }
+}
+
+/* ---------- Typography & Utility ---------- */
+.script {
+  font-family: var(--serif);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 400;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Gold Divider */
+.gold-divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--oro), transparent);
+  margin: 0.8rem auto 1.5rem;
+}
+
+/* ---------- Buttons & Touch Targets ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--salvia-scuro);
+  color: var(--carta);
+  padding: 0.85rem 1.8rem;
+  border-radius: 99px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(var(--salvia-scuro-rgb), 0.2);
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, box-shadow 0.2s;
+  min-height: 46px;
+  min-width: 140px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    background: var(--salvia-scuro-hover);
+    box-shadow: 0 6px 16px rgba(var(--salvia-scuro-rgb), 0.3);
+    transform: translateY(-1px);
+  }
+}
+
+.btn:active {
+  transform: scale(0.96) !important;
+  box-shadow: 0 2px 6px rgba(var(--salvia-scuro-rgb), 0.15);
+  transition: transform 0.05s ease;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--salvia-scuro);
+  border: 1.5px solid var(--salvia-scuro);
+  box-shadow: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-ghost:hover {
+    background: rgba(var(--salvia-scuro-rgb), 0.06);
+    box-shadow: none;
+  }
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  min-height: 38px;
+  min-width: 80px;
+}
+
+/* Sezione annunciata ma non ancora attiva ("disponibile dal …") */
+.soon-note { font-style: italic; color: var(--tenue); margin: 0; }
+
+.soon {
+  display: inline-block;
+  color: var(--tenue);
+  font-size: 0.85rem;
+  font-style: italic;
+  padding: 0.6rem;
+  text-align: center;
+}
+
+/* ---------- Unboxing Screen (Envelope) ---------- */
+.lock {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.2rem;
+  padding: 2rem;
+  text-align: center;
+  background: radial-gradient(130% 110% at 50% 10%, var(--carta), var(--sabbia));
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
+  overflow: hidden;
+}
+
+.lock.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.envelope-wrap {
+  perspective: 1400px;
+  width: min(86vw, 330px);
+  margin-bottom: 0.5rem;
+  transform-style: preserve-3d;
+  animation: float-wrap 6s ease-in-out infinite;
+}
+
+@keyframes float-wrap {
+  0%, 100% { transform: translateY(0) rotateX(15deg) rotateY(-10deg); }
+  50% { transform: translateY(-15px) rotateX(8deg) rotateY(-5deg); }
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/2;
+  transform-style: preserve-3d;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.envelope.open {
+  transform: translateY(100px) rotateX(35deg) scale(0.9);
+}
+
+.env-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #f0e6d6 0%, #e2d3be 100%);
+  border-radius: 8px;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.05), var(--ombra-busta);
+  transform: translateZ(-8px);
+}
+
+.env-letter {
+  position: absolute;
+  left: 2%; right: 2%; top: 2%; bottom: 2%;
+  background: var(--carta);
+  border-radius: 6px;
+  transform: translateZ(-2px) translateY(0);
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.envelope.pull-letter .env-letter {
+  transform: translateZ(-2px) translateY(-110%);
+}
+
+.env-side-l {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 51%;
+  z-index: 2;
+  background: linear-gradient(90deg, #d3c4ad, #e8ddc9);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  transform: translateZ(4px);
+}
+
+.env-side-r {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 51%;
+  z-index: 2;
+  background: linear-gradient(270deg, #d3c4ad, #e8ddc9);
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  transform: translateZ(4px);
+}
+
+.env-front {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 60%;
+  background: linear-gradient(180deg, #dfd2b9, #cbbe9f);
+  border-radius: 0 0 8px 8px;
+  z-index: 3;
+  clip-path: polygon(0 40%, 50% 100%, 100% 40%, 100% 100%, 0 100%);
+  transform: translateZ(5px);
+}
+
+.env-flap {
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 60%;
+  transform-origin: top center;
+  transform: translateZ(6px) rotateX(0deg);
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  transform-style: preserve-3d;
+}
+
+/* Fronte dell'ala (visibile chiusa) */
+.env-flap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #ede3cf 0%, #dfd4bf 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Retro dell'ala (inside della busta, visibile quando aperta) */
+.env-flap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #f8f2e8 0%, #fff8f0 80%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform: rotateX(180deg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: inset 0 -6px 16px rgba(0, 0, 0, 0.07);
+}
+
+.env-seal {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(8px);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow:
+    0 4px 15px rgba(var(--terracotta-rgb), 0.35),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.25);
+  z-index: 12;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+
+@keyframes pulse-seal {
+  0% {
+    box-shadow: 
+      0 4px 15px rgba(var(--terracotta-rgb), 0.35), 
+      inset 0 -2px 4px rgba(0, 0, 0, 0.2), 
+      inset 0 2px 4px rgba(255, 255, 255, 0.25),
+      0 0 0 0 rgba(var(--terracotta-rgb), 0.7);
+  }
+  70% {
+    box-shadow: 
+      0 4px 15px rgba(var(--terracotta-rgb), 0.35), 
+      inset 0 -2px 4px rgba(0, 0, 0, 0.2), 
+      inset 0 2px 4px rgba(255, 255, 255, 0.25),
+      0 0 0 12px rgba(var(--terracotta-rgb), 0);
+  }
+  100% {
+    box-shadow: 
+      0 4px 15px rgba(var(--terracotta-rgb), 0.35), 
+      inset 0 -2px 4px rgba(0, 0, 0, 0.2), 
+      inset 0 2px 4px rgba(255, 255, 255, 0.25),
+      0 0 0 0 rgba(var(--terracotta-rgb), 0);
+  }
+}
+
+.env-seal.ready {
+  animation: pulse-seal 2s infinite;
+}
+
+.env-seal svg {
+  transition: transform 0.3s ease;
+}
+
+.seal-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: transparent;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  flex-shrink: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .env-seal:hover .seal-logo {
+    transform: scale(1.12);
+  }
+}
+
+.env-seal:active {
+  transform: translate(-50%, -50%) translateZ(8px) scale(0.92) !important;
+}
+
+/* Opened Envelope State – ala ripiegata all'indietro, retro (inside) visibile */
+.envelope.open .env-flap {
+  transform: translateZ(6px) rotateX(-165deg);
+  z-index: 10;
+}
+
+.env-seal.broken {
+  transform: translate(-50%, -50%) translateZ(8px) scale(1.15);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Letter Extraction Animation */
+.letter-start {
+  transform: translateY(-20px) scale(0.95) !important;
+  opacity: 0 !important;
+}
+
+.letter-reveal {
+  transform: translateY(0) scale(1) !important;
+  opacity: 1 !important;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease !important;
+}
+
+.lock-retry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  width: min(86vw, 330px);
+  margin-top: 1.1rem;
+  z-index: 5;
+}
+
+#lock-btn {
+  background: var(--terracotta);
+  box-shadow: 0 4px 12px rgba(var(--terracotta-rgb), 0.2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #lock-btn:hover {
+    background: var(--terracotta-scuro);
+    box-shadow: 0 6px 16px rgba(var(--terracotta-rgb), 0.3);
+  }
+}
+
+.lock-error {
+  color: var(--terracotta);
+  font-size: 0.85rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ---------- App Layout ---------- */
+.app {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.section {
+  padding: 4.5rem 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.section.alt {
+  background-color: var(--sabbia);
+}
+
+.section-kicker, .kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.75rem;
+  color: var(--terracotta);
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  color: var(--inchiostro);
+  margin-bottom: 0.3rem;
+}
+
+.section-sub {
+  color: var(--tenue);
+  margin: 0.4rem auto 2.2rem;
+  max-width: 38ch;
+  font-size: 0.92rem;
+}
+
+/* ---------- Logo (monogramma/sigla sposi) ---------- */
+.logo-wrap {
+  margin-bottom: 1rem;
+}
+
+.logo-img {
+  width: min(120px, 30vw);
+  height: auto;
+  border-radius: 50%;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+/* ---------- Hero Section ---------- */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1.5rem;
+  background: radial-gradient(120% 80% at 50% 0%, var(--carta), var(--avorio));
+}
+
+.sposi {
+  font-size: clamp(2.8rem, 11vw, 3.8rem);
+  color: var(--terracotta);
+  line-height: 1.05;
+  margin: 0.5rem 0;
+  white-space: nowrap;
+}
+
+.data-nozze {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  color: var(--salvia-scuro);
+  letter-spacing: 0.08em;
+  margin-top: 0.4rem;
+}
+
+.testo-partecipazione {
+  max-width: 38ch;
+  margin: 1.5rem auto 2.2rem;
+  color: var(--inchiostro);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+/* ---------- Countdown (Flicker-Free, Vertical Slide) ---------- */
+.countdown {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 0.5rem 0 2rem;
+}
+
+.cd-box {
+  background: var(--carta);
+  border: 1px solid rgba(var(--oro-rgb), 0.2);
+  border-radius: 16px;
+  padding: 0.75rem 0.5rem;
+  width: 70px;
+  height: 85px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--ombra-premium);
+}
+
+.cd-digit-wrapper {
+  height: 2.2rem;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.cd-box span {
+  display: block;
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  color: var(--terracotta);
+  line-height: 2.2rem;
+  font-variant-numeric: tabular-nums;
+  width: 100%;
+  text-align: center;
+}
+
+.cd-box small {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--tenue);
+  margin-top: 0.25rem;
+}
+
+/* Digits Slide Animation */
+.cd-digit-slide {
+  animation: slideDigitDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDigitDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.cta-cal {
+  margin-top: 0.8rem;
+}
+
+.cta-cal-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--tenue);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.8rem;
+}
+
+.cta-cal-btns {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.scroll-cue {
+  margin-top: 2.5rem;
+  font-size: 1.5rem;
+  color: var(--oro);
+  animation: bob 2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ---------- Sezione Famiglie ---------- */
+.genitori-frase {
+  font-style: italic;
+  color: var(--tenue);
+  max-width: 44ch;
+  margin: 0 auto 1.8rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Famiglie affiancate, nessuna prima dell'altra: sposa a sinistra, sposo a destra.
+   Griglia a righe: i cognomi dei padri sulla stessa riga, sotto quelli delle madri;
+   il cuore al centro occupa tutte le righe. Solo cognomi: interi ("Famiglia Gambardella")
+   non entrano in mezza larghezza di telefono senza andare a capo. */
+.famiglie {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 1.2rem;
+  row-gap: 0.55rem;
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  background: var(--carta);
+  border: 1px solid rgba(var(--linea-rgb), 0.6);
+  border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(var(--inchiostro-rgb), 0.02);
+  transition: box-shadow 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .famiglie:hover {
+    box-shadow: 0 8px 20px rgba(var(--inchiostro-rgb), 0.04);
+  }
+}
+
+.famiglia-nome-item {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--inchiostro);
+  margin: 0;
+  line-height: 1.3;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.famiglia-sep {
+  color: var(--terracotta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: rgba(var(--terracotta-rgb), 0.05);
+  border-radius: 50%;
+  border: 1px dashed rgba(var(--terracotta-rgb), 0.25);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .famiglie:hover .famiglia-sep {
+    background: rgba(var(--terracotta-rgb), 0.08);
+    border-color: rgba(var(--terracotta-rgb), 0.45);
+  }
+}
+
+.famiglia-sep svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .famiglie:hover .famiglia-sep svg {
+    transform: scale(1.15);
+  }
+}
+
+@media (max-width: 480px) {
+  .famiglie {
+    padding: 1.5rem 1rem;
+    column-gap: 0.8rem;
+  }
+  .famiglia-nome-item {
+    font-size: 1rem;
+  }
+  .famiglia-sep {
+    width: 36px;
+    height: 36px;
+  }
+  .famiglia-sep svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* ---------- Media Gallery Carousel (Touch-optimized) ---------- */
+.galleria-carousel {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 1.5rem 1.5rem;
+  scrollbar-width: none;
+  margin: 0 -1.5rem;
+}
+
+.galleria-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.galleria-item {
+  flex-shrink: 0;
+  width: min(76vw, 260px);
+  scroll-snap-align: center;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  background: var(--sabbia);
+  box-shadow: var(--ombra-premium);
+  border: 1px solid rgba(var(--oro-rgb), 0.15);
+}
+
+.galleria-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+}
+
+.galleria-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--sabbia), var(--linea));
+  color: var(--tenue);
+  font-size: 0.85rem;
+  font-style: italic;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.galleria-placeholder-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.5;
+}
+
+.galleria-didascalia {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(var(--inchiostro-rgb), 0.8), transparent);
+  color: var(--carta);
+  font-size: 0.85rem;
+  font-family: var(--serif);
+}
+
+.galleria-dots {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.2rem;
+}
+
+.galleria-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--linea);
+  transition: background 0.25s, transform 0.25s;
+  cursor: pointer;
+}
+
+.galleria-dot.active {
+  background: var(--terracotta);
+  transform: scale(1.3);
+}
+
+/* ---------- Logistica (Cerimonia / Ricevimento) ---------- */
+.orario {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  color: var(--salvia-scuro);
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+.luogo-nome {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0.2rem 0;
+  color: var(--inchiostro);
+}
+
+.luogo-indirizzo {
+  color: var(--tenue);
+  margin: 0.2rem auto 1.5rem;
+  font-size: 0.95rem;
+  max-width: 32ch;
+  line-height: 1.4;
+}
+
+.azioni {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Custom Table Card finder */
+.tavolo-card {
+  margin-top: 3.5rem;
+  background: var(--carta);
+  border: 1px solid rgba(var(--oro-rgb), 0.25);
+  border-radius: 24px;
+  padding: 2rem 1.5rem;
+  box-shadow: var(--ombra-premium);
+}
+
+.tavolo-title {
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+  color: var(--inchiostro);
+}
+
+.tavolo-form {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+#tavolo-input {
+  flex: 1;
+  min-width: 180px;
+  padding: 0.85rem 1.1rem;
+  border: 1.5px solid var(--linea);
+  border-radius: 14px;
+  font-size: 1rem;
+  font-family: var(--sans);
+  background: var(--avorio);
+}
+
+#tavolo-input:focus {
+  outline: none;
+  border-color: var(--salvia);
+  background: var(--carta);
+}
+
+.tavolo-result {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  animation: fadeIn 0.4s ease;
+}
+
+.tavolo-result span {
+  display: block;
+}
+
+.tavolo-result .big {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  color: var(--terracotta);
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+.tavolo-result.err {
+  color: var(--terracotta);
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Event timeline (Programma) ---------- */
+.programma-list {
+  max-width: 440px;
+  margin: 2rem auto 0;
+  position: relative;
+  padding-left: 2rem;
+  text-align: left;
+}
+
+.programma-list::before {
+  content: "";
+  position: absolute;
+  left: 31px;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  width: 1.5px;
+  background: linear-gradient(to bottom, var(--linea), var(--salvia) 20%, var(--salvia) 80%, var(--linea));
+}
+
+.programma-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.2rem 0;
+  position: relative;
+}
+
+.programma-step::before {
+  content: "";
+  position: absolute;
+  left: -24px;
+  top: 1.55rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--avorio);
+  border: 2px solid var(--salvia);
+  z-index: 2;
+  transition: background-color 0.3s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .programma-step:hover::before {
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+  }
+}
+
+.programma-ora {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  color: var(--terracotta);
+  min-width: 60px;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  padding-top: 0.1rem;
+}
+
+.programma-info {
+  flex: 1;
+}
+
+.programma-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.programma-icona {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.programma-titolo {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--inchiostro);
+  margin: 0;
+}
+
+/* ---------- Trips timeline (Viaggi) ---------- */
+.timeline {
+  position: relative;
+  margin: 2.5rem auto 0;
+  padding: 1rem 0;
+  max-width: 500px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background: linear-gradient(to bottom, transparent, var(--linea) 10%, var(--linea) 90%, transparent);
+}
+
+.stop {
+  position: relative;
+  width: 100%;
+  padding: 0 0 2.8rem 2.8rem;
+  text-align: left;
+}
+
+.stop::after {
+  content: "";
+  position: absolute;
+  left: 12.5px;
+  top: 0.4rem;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--carta);
+  border: 3px solid var(--salvia);
+  z-index: 2;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .stop:hover::after {
+    transform: scale(1.25);
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+  }
+}
+
+.stop-periodo {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--terracotta);
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.stop-luogo {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  color: var(--inchiostro);
+  margin: 0 0 0.4rem;
+  line-height: 1.25;
+}
+
+.stop-testo {
+  font-size: 0.92rem;
+  color: var(--tenue);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.stop-foto {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 16px;
+  margin-top: 0.8rem;
+  box-shadow: var(--ombra-premium);
+  display: block;
+}
+
+.stop.final::after {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+  width: 21px;
+  height: 21px;
+  left: 9.5px;
+}
+
+.stop.final .stop-luogo {
+  color: var(--terracotta);
+}
+
+.stop.final .stop-mark {
+  font-size: 2.2rem;
+  display: block;
+  color: var(--terracotta);
+  margin-top: 0.4rem;
+}
+
+/* ---------- Regalo (Mesa de regalos) ---------- */
+.regalo {
+  margin-top: 3rem;
+  background: var(--carta);
+  border: 1px solid rgba(var(--oro-rgb), 0.25);
+  border-radius: 24px;
+  padding: 2rem 1.4rem;
+  box-shadow: var(--ombra-premium);
+}
+
+.frase-regalo {
+  color: var(--inchiostro);
+  max-width: 42ch;
+  margin: 0 auto 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+
+/* ---------- Dress Code & Event Rules ---------- */
+.dresscode-testo {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  color: var(--terracotta);
+  margin: 0 auto 0.4rem;
+}
+
+.dresscode-sub {
+  color: var(--tenue);
+  margin: 0.2rem auto 1.5rem;
+  max-width: 40ch;
+  font-size: 0.92rem;
+}
+
+.dresscode-regole {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.regola-card {
+  background: var(--carta);
+  border: 1px solid rgba(var(--linea-rgb), 0.8);
+  border-radius: 18px;
+  padding: 1.2rem;
+  min-width: 140px;
+  flex: 1;
+  max-width: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 14px rgba(var(--inchiostro-rgb), 0.03);
+}
+
+.regola-icona {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.regola-testo {
+  font-size: 0.82rem;
+  color: var(--tenue);
+  text-align: center;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* ---------- RSVP Module ---------- */
+.rsvp-container {
+  max-width: 380px;
+  margin: 0 auto;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  text-align: left;
+}
+
+.rsvp-label-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.rsvp-label-field span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--tenue);
+  margin-left: 0.3rem;
+}
+
+.rsvp-field {
+  padding: 0.85rem 1.1rem;
+  border: 1.5px solid var(--linea);
+  border-radius: 14px;
+  font-size: 1rem;
+  font-family: var(--sans);
+  background: var(--carta);
+  color: var(--inchiostro);
+  width: 100%;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  min-height: 44px;
+}
+
+.rsvp-field:focus {
+  outline: none;
+  border-color: var(--salvia);
+  box-shadow: 0 0 0 3px rgba(var(--salvia-rgb), 0.12);
+}
+
+.rsvp-textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.rsvp-submit {
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rsvp-submit:hover {
+    background: var(--salvia-scuro-hover);
+  }
+}
+
+.rsvp-error {
+  color: var(--terracotta);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.rsvp-deadline {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* RSVP loading spinner */
+.rsvp-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* RSVP success */
+.rsvp-success {
+  text-align: center;
+  padding: 2.5rem 1.2rem;
+  animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.rsvp-success-icon {
+  font-size: 3.5rem;
+  margin-bottom: 0.8rem;
+  animation: popIcon 0.6s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.rsvp-success h3 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  color: var(--terracotta);
+  margin-bottom: 0.6rem;
+}
+
+.rsvp-success-text {
+  color: var(--tenue);
+  max-width: 32ch;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes popIcon {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+/* ---------- Shared photos ---------- */
+.foto-actions {
+  margin: 0.5rem 0 1rem;
+}
+
+.foto-status {
+  font-size: 0.92rem;
+  color: var(--tenue);
+  min-height: 1.5em;
+  font-weight: 500;
+}
+
+.foto-status .ok {
+  color: var(--salvia-scuro);
+}
+
+.foto-status .ko {
+  color: var(--terracotta);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  padding: 4rem 1.5rem 5rem;
+  text-align: center;
+  background: var(--salvia-scuro);
+  color: var(--avorio);
+  margin-top: auto;
+}
+
+#footer-text {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  max-width: 32ch;
+  margin: 0 auto;
+}
+
+.footer-mark {
+  font-size: 1.5rem;
+  margin: 0.8rem 0 0;
+  color: var(--oro);
+}
+
+/* ---------- FAB System (Audio & Floating Actions) ---------- */
+.fab {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 30;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  color: #fff;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.fab:active {
+  transform: scale(0.94) !important;
+}
+
+.fab-audio {
+  bottom: 4.8rem;
+  background: var(--salvia-scuro);
+}
+
+.fab-audio.playing {
+  animation: rotate-slow 12s linear infinite;
+  background: var(--salvia-scuro);
+}
+
+.fab-audio.attention {
+  animation: pulse-soft 2s ease-in-out infinite;
+  background: var(--terracotta);
+}
+.fab-audio.attention-strong {
+  animation: pulse-soft 1s ease-in-out infinite;
+  background: var(--terracotta);
+  box-shadow: 0 0 0 4px rgba(var(--terracotta-rgb),0.35);
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); box-shadow: 0 6px 20px rgba(var(--terracotta-rgb), 0.45); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fab-audio.playing, .fab-audio.attention, .scroll-cue {
+    animation: none !important;
+  }
+}
+
+/* ---------- Scroll Entrance Animations (Intersection Observer) ---------- */
+.anim {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.45s cubic-bezier(0.23, 1, 0.32, 1), transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.anim.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Honeypot anti-bot — invisibile all'utente, visibile ai bot */
+.rsvp-hp-wrap {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+/* ===== TEMA ACQUARELLO — palette, font e immagini dell'invito (Partecipazioni V8.0) ===== */
+:root {
+  --avorio: #FBF7F0;
+  --sabbia: #F4ECDF;
+  --carta: #FFFDF9;
+  --inchiostro: #4A3B28;
+  --tenue: #8A7A64;
+  --salvia: #B89030;
+  --salvia-scuro: #94701C;
+  --salvia-scuro-hover: #7D5D12;
+  --oro: #B89030;
+  --terracotta: #B89030;
+  --terracotta-scuro: #94701C;
+  --linea: #E9DDC6;
+  --sfondo-desktop: #3A2F20;
+  --salvia-rgb: 184, 144, 48;
+  --salvia-scuro-rgb: 148, 112, 28;
+  --oro-rgb: 184, 144, 48;
+  --terracotta-rgb: 184, 144, 48;
+  --inchiostro-rgb: 74, 59, 40;
+  --linea-rgb: 233, 221, 198;
+  --rosa: #C2467F;
+  --script: "Great Vibes", "Snell Roundhand", cursive;
+  --serif: "Lora", Georgia, serif;
+  --sans: "Lora", Georgia, serif;
+}
+body, .phone-frame { font-family: var(--serif); }
+.script, h1, h2, h3, .section-title, .sposi, .data-nozze { font-family: var(--script); font-weight: 400; }
+.section-title { font-size: 2.9rem; line-height: 1.15; color: var(--terracotta-scuro); }
+.sposi { word-spacing: 0.12em; font-size: clamp(2.5rem, 12vw, 3.9rem); line-height: 1.1; color: var(--terracotta-scuro);
+  white-space: normal; text-wrap: balance; max-width: 100%; overflow-wrap: anywhere; }
+.data-nozze { font-size: 1.7rem; letter-spacing: 0.02em; color: var(--terracotta-scuro); }
+.section-kicker, .kicker { font-family: var(--serif); font-weight: 500; letter-spacing: 0.28em; color: var(--terracotta); }
+.btn { font-family: var(--serif); font-weight: 500; letter-spacing: 0.1em; font-size: 0.8rem; }
+.orario, .luogo-nome { font-family: var(--script); font-size: 2rem; color: var(--terracotta-scuro); }
+.luogo-indirizzo { font-style: italic; color: var(--tenue); }
+.cd-box { background: rgba(255,253,249,.85); border-color: rgba(184,144,48,.35); }
+.cd-box span { font-family: var(--serif); }
+/* La linea si interrompe al centro per il fiorellino: niente riquadro di sfondo, che sulle sezioni sabbia si vedrebbe. */
+.gold-divider { width: 120px; background: linear-gradient(90deg, transparent, var(--oro) 30%, transparent 41%, transparent 59%, var(--oro) 70%, transparent); }
+.gold-divider::after { content: "❦"; display: block; margin-top: -0.7em; color: var(--oro); font-size: 0.75rem; line-height: 1; width: 1.6em; margin-left: auto; margin-right: auto; }
+.section.alt { background: linear-gradient(180deg, var(--sabbia), #F8F1E4); }
+
+/* Busta: sigillo crema con monogramma dorato, sfondo con il castello */
+.lock { background: var(--avorio); }
+.lock::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 62%;
+  background: url(acquarello/castello.webp) center top / cover no-repeat;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent);
+  mask-image: linear-gradient(#000 55%, transparent); opacity: .85; pointer-events: none; }
+.lock > * { position: relative; }
+.env-seal { background: var(--carta); border: 1.5px solid var(--oro); }
+.env-seal .seal-logo { content: url(acquarello/monogramma.webp); width: 100%; height: 100%; object-fit: cover; }
+
+/* Hero: illustrazione della chiesa */
+.hero { background: var(--avorio); padding-top: 0; justify-content: flex-start; overflow: hidden; }
+.hero-art { width: calc(100% + 3rem); margin: 0 -1.5rem 0; aspect-ratio: 785 / 700; position: relative; }
+.hero-art img { width: 100%; height: 100%; object-fit: cover; object-position: top;
+  -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
+.hero-mono { width: 84px; height: 84px; margin: -2.2rem auto 0.4rem; position: relative; }
+.hero .kicker { margin-top: .4rem; }
+
+/* Ricevimento: banner castello */
+.banner-castello { margin: -4.5rem -1.5rem 1.5rem; height: 230px;
+  background: url(acquarello/castello.webp) center 30% / cover no-repeat;
+  -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent); }
+/* Chiusura RSVP / footer con i fiori */
+#rsvp-sec { overflow: hidden; }
+#rsvp-sec::before { content: ""; position: absolute; top: 0; right: 0; width: 62%; aspect-ratio: 780/501;
+  background: url(acquarello/bouganville.webp) right top / contain no-repeat; mix-blend-mode: multiply; pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse at 100% 0%, #000 45%, transparent 75%); mask-image: radial-gradient(ellipse at 100% 0%, #000 45%, transparent 75%); }
+#rsvp-sec { padding-top: 7rem; }
+#rsvp-sec > * { position: relative; }
+#logo-wrap { display: none !important; }
+/* ===== fine tema acquarello ===== */
+
+/* Countdown: i riquadri si adattano alla larghezza dello schermo (le cifre in Lora sono più larghe e a 320px
+   "356" veniva tagliato). Fino a 3 cifre per i giorni, tabellari per non ballare ogni secondo. */
+.countdown { width: 100%; max-width: 360px; gap: 0.5rem; }
+.cd-box { width: auto; flex: 1 1 0; min-width: 0; max-width: 80px; padding: 0.75rem 0.2rem; }
+.cd-box span { font-size: clamp(1.45rem, 6.8vw, 2rem); }
+
+/* Attesa della risposta del server: anello oro sul sigillo + scritta, e il sigillo non risponde ai tocchi.
+   Così gli invitati capiscono che si sta aspettando e non premono più volte. */
+.env-seal::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 3px solid transparent;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+.lock.loading .env-seal { pointer-events: none; cursor: progress; }
+.lock.loading .env-seal::after { opacity: 1; border-top-color: var(--oro); border-right-color: rgba(var(--oro-rgb), 0.45);
+  animation: seal-spin 0.9s linear infinite; }
+@keyframes seal-spin { to { transform: rotate(360deg); } }
+.lock-wait { font-family: var(--script); font-size: 1.7rem; line-height: 1.2; color: var(--terracotta-scuro); text-align: center; margin: 1.1rem 0 0; }
+
+/* Pagina "solo foto" (?foto): niente busta né altre sezioni, solo il caricamento. */
+.foto-mono { display: block; width: 96px; height: 96px; margin: 0 auto 0.6rem; }
+.foto-names { font-family: var(--script); font-size: 2.2rem; line-height: 1.15; color: var(--terracotta-scuro); margin: 0.6rem 0 0.4rem; }
+.foto-mode #lock { display: none !important; }
+.foto-mode #app > :not(#foto) { display: none !important; }
+.foto-mode #app { flex: 1 0 auto; display: flex; flex-direction: column; }
+.foto-mode #foto { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.iban-pw-form { display: flex; flex-direction: column; gap: 0.6rem; align-items: center; margin-top: 1rem; }
+.iban-pw-label { font-size: 0.9rem; color: var(--inchiostro); }
+.iban-pw-form input { width: 100%; max-width: 280px; padding: 0.8rem 1rem; border: 1.5px solid var(--linea); border-radius: 14px;
+  font-size: 1rem; font-family: var(--sans); text-align: center; background: var(--carta); color: var(--inchiostro); }
+.iban-pw-form input:focus { outline: none; border-color: var(--oro); box-shadow: 0 0 0 3px rgba(var(--oro-rgb), 0.2); }
+
+/* Indicazioni a busta pronta: dove toccare e di alzare il volume. La freccia punta al sigillo. */
+.lock-hint { text-align: center; margin: 1.1rem 0 0; padding: 0 1.5rem; }
+.lock-hint-main { font-family: var(--script); font-size: 1.8rem; line-height: 1.2; color: var(--terracotta-scuro); margin: 0; }
+.lock-hint-main::before { content: ""; display: block; width: 11px; height: 11px; margin: 0 auto 0.55rem;
+  border-left: 2.5px solid var(--oro); border-top: 2.5px solid var(--oro); transform: rotate(45deg);
+  animation: hint-bob 1.4s ease-in-out infinite; }
+.lock-hint-main, .lock-hint-sub { text-wrap: balance; }
+.lock-hint-sub { font-style: italic; font-size: 0.95rem; color: var(--tenue); margin: 0.5rem 0 0; }
+@keyframes hint-bob { 0%, 100% { transform: translateY(0) rotate(45deg); } 50% { transform: translateY(-5px) rotate(45deg); } }
+
+/* Great Vibes esiste solo in peso normale: un peso 600 diventerebbe un grassetto sintetico poco elegante. */
+.luogo-nome, .orario { font-weight: 400; }
+.dresscode-testo, .stop.final .stop-luogo { color: var(--terracotta-scuro); }
+.footer { background: var(--salvia-scuro-hover); }
+
+/* Accessibilità: l'oro #B89030 (2,8:1 sul crema) resta per bordi e decorazioni; i testi piccoli usano
+   un oro più scuro (≥ 5:1). I titoli grandi in Great Vibes restano #94701C (≥ 3:1, soglia del testo grande). */
+:root { --oro-testo: #7D5D12; --tenue: #6F6048; }
+.section-kicker, .kicker, .stop-periodo, .cta-cal-label { color: var(--oro-testo); }
+.orario, .luogo-nome, .section-title, .data-nozze { overflow-wrap: anywhere; max-width: 100%; }
+
+
+/* ---------- Desktop / tablet: il telefono è una cornice di 420px ---------- */
+/* 11vw si misura sulla finestra, non sulla cornice: su schermi larghi il titolo usciva dai bordi. */
+@media (min-width: 768px) {
+  .sposi { font-size: 3.4rem; }
+}
+
+/* Spazio in fondo: i pulsanti flottanti non coprono il testo del footer */
+.footer {
+  padding-bottom: calc(8.5rem + env(safe-area-inset-bottom));
+}
+
+/* ---------- Movimento ridotto (impostazione di accessibilità del sistema) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .anim {
+    transform: none;
+    transition: opacity 0.2s ease !important;
+  }
+}
+</style>
+
+</head>
+<body>
+
+  <!-- Wrapper per mockup desktop -->
+  <div class="desktop-bg">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      
+      <!-- Contenuto scrollabile del telefono -->
+      <div class="phone-content" id="phone-content">
+
+        <!-- ============ SCHERMATA BUSTA / ACCESSO ============ -->
+        <div id="lock" class="lock">
+          <div class="envelope-wrap">
+            <div class="envelope" id="envelope">
+              <div class="env-back"></div>
+              <div class="env-letter" id="env-letter"></div>
+              <div class="env-side-l"></div>
+              <div class="env-side-r"></div>
+              <div class="env-front"></div>
+              <div class="env-flap"></div>
+              <div class="env-seal" id="env-seal" aria-label="Apri l'invito">
+                <img src="acquarello/monogramma.webp" class="seal-logo" alt="AC">
+              </div>
+            </div>
+          </div>
+
+          <!-- Nessuna parola per entrare: serve solo per vedere l'IBAN nella sezione Regalo. -->
+          <div id="lock-retry" class="lock-retry" hidden>
+            <p id="lock-error" class="lock-error" role="alert"></p>
+            <button type="button" id="lock-btn" class="btn">Riprova</button>
+          </div>
+          <p id="lock-wait" class="lock-wait" role="status" aria-live="polite" hidden>Sto preparando l'invito…</p>
+          <div id="lock-hint" class="lock-hint" role="status" aria-live="polite" hidden>
+            <p class="lock-hint-main">Tocca il sigillo per aprire l'invito</p>
+            <p class="lock-hint-sub">🔊 Alza il volume per un'esperienza completa</p>
+          </div>
+        </div>
+
+        <!-- ============ CONTENUTO PRINCIPALE ============ -->
+        <main id="app" class="app" hidden>
+
+          <!-- 1 · Hero + Countdown -->
+          <section id="invito" class="section hero">
+            <div class="hero-art"><img src="acquarello/chiesa.webp" alt="La chiesa di Santa Maria del Riposo" width="785" height="965"></div>
+            <img class="hero-mono" src="acquarello/monogramma.webp" alt="Monogramma AC" width="84" height="84">
+            <div id="logo-wrap" class="logo-wrap" hidden>
+              <img id="logo-img" class="logo-img" alt="Monogramma sposi">
+            </div>
+            <p class="kicker">Ci sposiamo</p>
+            <h1 id="titolo-sposi" class="sposi script"></h1>
+            <div class="gold-divider"></div>
+            <p id="data-nozze" class="data-nozze"></p>
+            <p id="testo-partecipazione" class="testo-partecipazione"></p>
+
+            <div class="countdown" id="countdown" aria-label="Conto alla rovescia">
+              <div class="cd-box">
+                <div class="cd-digit-wrapper"><span id="cd-days">0</span></div>
+                <small>giorni</small>
+              </div>
+              <div class="cd-box">
+                <div class="cd-digit-wrapper"><span id="cd-hours">00</span></div>
+                <small>ore</small>
+              </div>
+              <div class="cd-box">
+                <div class="cd-digit-wrapper"><span id="cd-mins">00</span></div>
+                <small>min</small>
+              </div>
+              <div class="cd-box">
+                <div class="cd-digit-wrapper"><span id="cd-secs">00</span></div>
+                <small>sec</small>
+              </div>
+            </div>
+
+            <div class="cta-cal">
+              <span class="cta-cal-label">Aggiungi al calendario</span>
+              <div class="cta-cal-btns">
+                <a id="cal-apple" class="btn btn-ghost" href="#" target="_blank" rel="noopener">iPhone / Apple</a>
+                <a id="cal-google" class="btn btn-ghost" href="#" target="_blank" rel="noopener">Android / Google</a>
+              </div>
+            </div>
+
+            <div class="scroll-cue" aria-hidden="true">↓</div>
+          </section>
+
+          <!-- 2 · Famiglie: sposa a sinistra, sposo a destra (righe: padri, poi madri) -->
+          <section id="famiglia" class="section alt">
+            <p class="section-kicker">Le nostre famiglie</p>
+            <p id="genitori-frase" class="genitori-frase"></p>
+            <div class="gold-divider"></div>
+            <div id="famiglie" class="famiglie">
+              <div class="famiglia-sep">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3 · Cerimonia -->
+          <section id="cerimonia" class="section">
+            <p class="section-kicker">La cerimonia</p>
+            <h2 class="section-title">In chiesa</h2>
+            <div class="gold-divider"></div>
+            <p id="ora-cerimonia" class="orario"></p>
+            <p id="chiesa-nome" class="luogo-nome"></p>
+            <p id="chiesa-indirizzo" class="luogo-indirizzo"></p>
+            <div class="azioni">
+              <a id="chiesa-maps" class="btn" href="#" target="_blank" rel="noopener">Come arrivare</a>
+              <a id="libretto" class="btn btn-ghost" href="#" target="_blank" rel="noopener" hidden>Libretto della cerimonia (PDF)</a>
+              <span id="libretto-soon" class="soon" hidden>Libretto disponibile il giorno del matrimonio</span>
+            </div>
+          </section>
+
+          <!-- 4 · Ricevimento + Trova tavolo -->
+          <section id="ricevimento" class="section alt">
+            <div class="banner-castello" role="img" aria-label="Il castello di Baia"></div>
+            <p class="section-kicker">Il ricevimento</p>
+            <h2 class="section-title">Al ristorante</h2>
+            <div class="gold-divider"></div>
+            <p id="ora-ricevimento" class="orario"></p>
+            <p id="ristorante-nome" class="luogo-nome"></p>
+            <p id="ristorante-indirizzo" class="luogo-indirizzo"></p>
+            <div class="azioni">
+              <a id="ristorante-maps" class="btn" href="#" target="_blank" rel="noopener">Come arrivare</a>
+              <a id="menu" class="btn btn-ghost" href="#" target="_blank" rel="noopener" hidden>Menù (PDF)</a>
+              <span id="menu-soon" class="soon" hidden>Menù disponibile il giorno del matrimonio</span>
+            </div>
+
+            <div class="tavolo-card">
+              <h3 class="tavolo-title">Trova il tuo tavolo</h3>
+              <p id="tavolo-soon" class="soon-note" role="status" hidden></p>
+              <form id="tavolo-form" class="tavolo-form" autocomplete="off">
+                <input id="tavolo-input" type="text" placeholder="Nome e cognome" autocomplete="off">
+                <button type="submit" class="btn">Cerca</button>
+              </form>
+              <div id="tavolo-result" class="tavolo-result" hidden></div>
+            </div>
+          </section>
+
+          <!-- 5 · Programma giornata -->
+          <section id="programma" class="section" hidden>
+            <p class="section-kicker">La nostra giornata</p>
+            <h2 class="section-title">Il programma</h2>
+            <div class="gold-divider"></div>
+            <p id="programma-soon" class="section-sub soon-note" role="status" hidden></p>
+            <div id="programma-list" class="programma-list"></div>
+          </section>
+
+          <!-- 6 · Dress code -->
+          <section id="dresscode" class="section alt" hidden>
+            <p class="section-kicker">Come venire</p>
+            <h2 class="section-title">Dress code</h2>
+            <div class="gold-divider"></div>
+            <p id="dresscode-testo" class="dresscode-testo"></p>
+            <p id="dresscode-sub" class="dresscode-sub"></p>
+            <div id="dresscode-regole" class="dresscode-regole"></div>
+          </section>
+
+          <!-- 7 · RSVP -->
+          <section id="rsvp-sec" class="section">
+            <p class="section-kicker">Conferma la tua presenza</p>
+            <h2 id="rsvp-title" class="section-title">Ci sarete?</h2>
+            <div class="gold-divider"></div>
+            <p id="rsvp-deadline" class="section-sub rsvp-deadline">Conferma entro il 1° luglio 2027.</p>
+            <p id="rsvp-closed" class="section-sub soon-note" role="status" hidden>Le conferme di partecipazione sono chiuse. Grazie a tutti!</p>
+            <div id="rsvp-container" class="rsvp-container">
+              <form id="rsvp-form" class="rsvp-form" autocomplete="off">
+                <div class="rsvp-label-field">
+                  <span>Numero di partecipanti *</span>
+                  <select id="rsvp-persone" class="rsvp-field" required></select>
+                </div>
+                <div class="rsvp-label-field">
+                  <span>Nome e Cognome *</span>
+                  <input id="rsvp-nome" class="rsvp-field" type="text"
+                         placeholder="Nome e cognome di riferimento" required autocomplete="off">
+                </div>
+                <div class="rsvp-label-field">
+                  <span>Numero di telefono *</span>
+                  <input id="rsvp-telefono" class="rsvp-field" type="tel"
+                         placeholder="Es. +39 333 1234567" required>
+                </div>
+                <div class="rsvp-label-field">
+                  <span>Messaggio o intolleranze</span>
+                  <textarea id="rsvp-messaggio" class="rsvp-field rsvp-textarea"
+                            placeholder="Segnala qui intolleranze alimentari o un messaggio per noi (opzionale)"></textarea>
+                </div>
+                <!-- Honeypot anti-bot: campo invisibile agli utenti, riempito solo dai bot -->
+                <div class="rsvp-hp-wrap" aria-hidden="true" tabindex="-1">
+                  <label for="rsvp-website">Sito web</label>
+                  <input id="rsvp-website" name="website" type="text" autocomplete="off" tabindex="-1">
+                </div>
+                <button type="submit" id="rsvp-btn" class="btn rsvp-submit">Conferma la presenza</button>
+                <p id="rsvp-error" class="rsvp-error" hidden></p>
+              </form>
+              <div id="rsvp-success" class="rsvp-success" hidden>
+                <div class="rsvp-success-icon">✉</div>
+                <h3>Grazie! Vi aspettiamo.</h3>
+                <p id="rsvp-success-text" class="rsvp-success-text"></p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 8 · Viaggi -->
+          <section id="viaggi" class="section alt">
+            <p class="section-kicker">La nostra storia</p>
+            <h2 class="section-title">In viaggio, insieme</h2>
+            <div class="gold-divider"></div>
+            <p class="section-sub">Ogni tappa una storia. La più importante deve ancora arrivare.</p>
+            <div id="timeline" class="timeline"></div>
+          </section>
+
+          <!-- 9 · Regalo: dopo i viaggi insieme, "il nostro prossimo viaggio" -->
+          <section id="regalo-sec" class="section">
+            <p class="section-kicker">Un pensiero per noi</p>
+            <h2 class="section-title">Il nostro prossimo viaggio</h2>
+            <div class="gold-divider"></div>
+            <div id="regalo" class="regalo">
+              <p id="frase-regalo" class="frase-regalo"></p>
+              <button id="btn-mostra-iban" class="btn btn-primary" type="button" style="margin-top: 1rem;">Mostra coordinate bancarie</button>
+              <form id="iban-pw-form" class="iban-pw-form" hidden autocomplete="off">
+                <label for="iban-pw" class="iban-pw-label">Scrivi la parola della partecipazione per vedere le coordinate</label>
+                <input id="iban-pw" type="text" inputmode="text" autocomplete="off" autocapitalize="off" placeholder="la parola sulla partecipazione">
+                <button type="submit" id="iban-pw-btn" class="btn btn-small">Conferma</button>
+              </form>
+              <p id="iban-error" class="lock-error" role="alert" hidden></p>
+              <div id="iban-container" class="iban-box" hidden>
+                <div class="iban-row">
+                  <span id="iban" class="iban"></span>
+                  <button id="iban-copy" class="btn btn-small" type="button">Copia</button>
+                </div>
+                <p class="iban-meta"><strong>Intestatario:</strong> <span id="intestatario"></span></p>
+                <p class="iban-meta"><strong>Causale:</strong> <span id="causale"></span></p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 10 · Galleria -->
+          <section id="galleria" class="section" hidden>
+            <p class="section-kicker">I nostri momenti</p>
+            <h2 class="section-title">Un po' di noi</h2>
+            <div class="gold-divider"></div>
+            <div id="galleria-carousel" class="galleria-carousel"></div>
+            <div id="galleria-dots" class="galleria-dots"></div>
+          </section>
+
+          <!-- 11 · Foto -->
+          <section id="foto" class="section alt">
+            <img id="foto-mono" class="foto-mono" src="acquarello/monogramma.webp" alt="" width="96" height="96" hidden>
+            <p class="section-kicker">Un regalo per noi</p>
+            <h2 class="section-title">Condividi le tue foto</h2>
+            <div class="gold-divider"></div>
+            <p id="foto-names" class="foto-names" hidden></p>
+            <p id="foto-sub" class="section-sub">Scatta o scegli una foto dalla galleria: arriverà direttamente a noi.</p>
+            <p id="foto-closed" class="section-sub foto-closed" role="status" hidden></p>
+            <div class="foto-actions">
+              <label class="btn" for="foto-input">Scegli una foto</label>
+              <input id="foto-input" type="file" accept="image/*" multiple hidden>
+            </div>
+            <div id="foto-status" class="foto-status" aria-live="polite"></div>
+          </section>
+
+          <footer class="footer">
+            <p id="footer-text"></p>
+            <p class="footer-mark">❤</p>
+          </footer>
+        </main>
+
+      </div> <!-- fine phone-content -->
+
+      <!-- FAB persistenti all'interno della cornice del telefono -->
+      <button id="fab-audio" class="fab fab-audio" hidden aria-label="Musica di sottofondo">♪</button>
+      <a href="#foto" id="fab-foto" class="fab" hidden aria-label="Carica una foto">📷</a>
+
+    </div> <!-- fine phone-frame -->
+  </div> <!-- fine desktop-bg -->
+
+  <!-- Audio background -->
+  <audio id="bg-audio" src="mp3/audio.mp3" loop preload="none"></audio>
+
+  <!-- canvas-confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"
+          integrity="sha384-sPwMflxqfAN+Q5mvlkLmHiX3PORGbZSXHiSGPTXT9VHCD/AB+b+r+vJWsqprv+7k" crossorigin="anonymous"></script>
+
+  <script>
+    // Produzione: deployment versionato stabile. In locale (file:// o localhost) la pagina
+    // carica config.local.js (non versionato) che indica il deployment di test; senza quel
+    // file punta a un URL finto, mai alla produzione.
+    var PROD_EXEC_URL = "https://script.google.com/macros/s/AKfycbxjMLOtfrIK3g1ZWIjGC6vNiyp7OVnMtriYL61DiykDS6XS1_rV2JeBtMfvGeZfMWDm/exec";
+    var IS_LOCAL = ['localhost', '127.0.0.1', ''].indexOf(window.location.hostname) !== -1;
+    if (IS_LOCAL) document.write('<script src="config.local.js"><\/script>');
+  </script>
+  <script>
+    var EXEC_URL = IS_LOCAL
+      ? (window.TEST_EXEC_URL_OVERRIDE || "https://script.google.com/macros/s/TEST_NON_CONFIGURATO/exec")
+      : PROD_EXEC_URL;
+    var _p       = new URLSearchParams(window.location.search);
+    // ?pw= (vecchi link/QR): non serve più per entrare, resta in memoria solo per mostrare subito l'IBAN.
+    var URL_PW   = _p.get('pw')       || '';
+    var GUEST_ID = _p.get('guest_id') || '';
+    // ?foto = pagina dedicata solo al caricamento delle foto (QR distribuito alla location): nessuna parola.
+    var FOTO_MODE = _p.has('foto');
+  </script>
+<script>
+(function () {
+  'use strict';
+
+  // ── fetch bridge for GitHub Pages static hosting ──────────────────────────
+  // Limite di attesa per chiamata: una risposta che non arriva non deve lasciare l'ospite in attesa per sempre.
+  // L'upload di una foto può richiedere più tempo su una rete mobile lenta.
+  var CALL_TIMEOUT_MS = { uploadPhoto: 90000 };
+  function gasCall(action, params, onSuccess, onFailure) {
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, CALL_TIMEOUT_MS[action] || 25000) : null;
+    fetch(EXEC_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(Object.assign({ action: action }, params || {})),
+      signal: ctrl ? ctrl.signal : undefined
+    })
+    .then(function(r) { if (timer) clearTimeout(timer); return r.text(); })
+    .then(function(text) {
+      try {
+        var result = JSON.parse(text);
+        if (onSuccess) onSuccess(result);
+      } catch (e) {
+        console.error("Fetch response is not valid JSON. Response starts with:", text.substring(0, 100));
+        if (onFailure) onFailure(new Error("Configurazione server errata o permessi mancanti. Controlla la Web App su Apps Script."));
+      }
+    })
+    .catch(function(err) {
+      if (timer) clearTimeout(timer);
+      // Gli errori di rete dei browser sono in inglese e poco chiari: messaggio unico in italiano.
+      var network = err && (err.name === 'AbortError' || err.name === 'TypeError');
+      if (onFailure) onFailure(network ? new Error('Connessione lenta o assente. Riprova tra un istante.') : err);
+    });
+  }
+
+
+  var LOGO_URL = 'acquarello/monogramma.webp';
+  var PASSWORD = URL_PW;   // parola per l'IBAN, se già nota (QR ?pw= o inserita nella sezione Regalo)
+  var audioStartedByUser = false;
+  var isLoading = false;   // in attesa della risposta del server (sblocco)
+  var isOpening = false;   // animazione di apertura busta già avviata
+  var IS_UNLOCKED = false;
+  var cdTimer = null;
+  var prevDigits = {}; // Memorizza le cifre del countdown precedenti per rilevare variazioni
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  function init() {
+    if (FOTO_MODE) { startPhotoMode(); return; }
+
+    // Sblocco dell'audio al primo tocco (iOS/Safari lo richiedono): parte MUTO e si ferma subito.
+    // Così il brano inizia a scaricarsi in silenzio mentre l'ospite scrive la parola, e quando
+    // apre la busta è già pronto. Si usa "muted" e non "volume": su iPhone il volume non è modificabile.
+    var audioUnlocked = false;
+    var audioUnlocking = false;
+    function unlockAudio() {
+      if (audioUnlocked || audioUnlocking) return;
+      var audio = document.getElementById('bg-audio');
+      if (!audio) return;
+      audioUnlocking = true;
+      audio.muted = true;
+      audio.preload = 'auto';
+      var started = audio.play();
+      function done(ok) {
+        audioUnlocking = false;
+        audio.muted = false;
+        if (!ok) return;
+        audioUnlocked = true;
+        document.removeEventListener('click', unlockAudio);
+        document.removeEventListener('touchstart', unlockAudio);
+      }
+      if (!started || !started.then) { audio.pause(); done(true); return; }
+      started.then(function () {
+        // Se nel frattempo l'ospite ha già aperto la busta (musica avviata), non interrompere.
+        if (!audioStartedByUser) { audio.pause(); audio.currentTime = 0; }
+        done(true);
+      }).catch(function () { done(false); /* es. blocco del browser: si riprova al tocco successivo */ });
+    }
+    document.addEventListener('click', unlockAudio);
+    document.addEventListener('touchstart', unlockAudio, { passive: true });
+
+    document.getElementById('lock-btn').addEventListener('click', loadSite);
+
+    // Il sigillo apre la busta quando i dati sono arrivati; dopo un errore riprova a caricarli.
+    document.getElementById('env-seal').addEventListener('click', function () {
+      // In attesa della risposta (o busta già in apertura) il sigillo non fa nulla:
+      // un tocco anticipato aprirebbe una busta vuota.
+      if (isLoading || isOpening) return;
+      if (IS_UNLOCKED) openEnvelopeAndReveal();
+      else loadSite();
+    });
+
+    // Toglie ?pw=/?guest_id= da barra degli indirizzi e cronologia subito, qualunque sia l'esito
+    // del caricamento: i valori restano solo in memoria.
+    if (URL_PW || GUEST_ID) {
+      try { history.replaceState(null, '', window.location.pathname); } catch (e) {}
+    }
+
+    // Nessuna parola per entrare: i dati si chiedono subito, mentre l'ospite guarda la busta.
+    loadSite();
+  }
+
+  // Mostra/nasconde l'attesa: anello sul sigillo, scritta e sigillo non cliccabile.
+  function setLoading(on) {
+    isLoading = on;
+    document.getElementById('lock').classList.toggle('loading', on);
+    document.getElementById('env-seal').setAttribute('aria-busy', on ? 'true' : 'false');
+    document.getElementById('lock-wait').hidden = !on;
+  }
+
+  // Pagina dedicata alle foto (QR alla location): nessuna parola, nessuna busta, nessuna musica.
+  // Il server decide se il caricamento è aperto (finestra FotoDal–FotoAl); qui si mostra solo il messaggio giusto.
+  function startPhotoMode() {
+    document.body.classList.add('foto-mode');
+    document.getElementById('app').hidden = false;
+    var sec = document.getElementById('foto');
+    sec.hidden = false;
+    document.getElementById('foto-mono').hidden = false;
+    var actions = sec.querySelector('.foto-actions');
+    var closed = document.getElementById('foto-closed');
+    actions.hidden = true;
+
+    function showClosed(msg) {
+      document.getElementById('foto-sub').hidden = true;
+      closed.textContent = msg; closed.hidden = false; actions.hidden = true;
+    }
+    function ask() {
+      closed.hidden = true;
+      gasCall('getPhotoInfo', {},
+        function (res) {
+          if (!res || !res.ok) { showClosed('Non riusciamo a collegarci. Riprova tra un istante.'); return; }
+          if (res.titolo) { var n = document.getElementById('foto-names'); n.textContent = res.titolo; n.hidden = false; }
+          if (res.aperta) { actions.hidden = false; wireFoto(); return; }
+          var oggi = new Date(); var iso = oggi.getFullYear() + '-' + pad(oggi.getMonth() + 1) + '-' + pad(oggi.getDate());
+          showClosed(res.dal && iso < res.dal
+            ? 'Il caricamento delle foto si apre il ' + formatDataNozze(res.dal) + '.'
+            : 'Il caricamento delle foto è terminato. Grazie a tutti!');
+        },
+        function (e) { showClosed((e && e.message) || 'Errore di connessione. Riprova.'); }
+      );
+    }
+    ask();
+  }
+
+  function loadSite() {
+    if (isLoading || IS_UNLOCKED) return;
+    setLoading(true);
+    document.getElementById('lock-retry').hidden = true;
+
+    function showError(msg) {
+      setLoading(false);
+      document.getElementById('lock-error').textContent = msg;
+      document.getElementById('lock-retry').hidden = false;
+    }
+
+    var retries = 0;
+    function onSuccess(res) {
+      if (!res && retries++ < 2) {
+        gasCall('getConfig', { guestId: GUEST_ID }, onSuccess, onFailure);
+        return;
+      }
+      if (!res || !res.ok) { showError('Non riusciamo a caricare l\'invito. Riprova tra un istante.'); return; }
+      setLoading(false);
+      render(res);
+      IS_UNLOCKED = true;
+      // L'audio (3 MB) si scarica solo ora, mentre l'ospite guarda la busta.
+      // Senza load(): ricaricare l'elemento azzererebbe lo sblocco ottenuto su iPhone.
+      var bgAudio = document.getElementById('bg-audio');
+      if (bgAudio) bgAudio.preload = 'auto';
+      document.getElementById('env-seal').classList.add('ready');
+      document.getElementById('lock-hint').hidden = false;
+    }
+
+    // Rete lenta o server che si sveglia: un secondo tentativo automatico prima di mostrare "Riprova".
+    var autoRetried = false;
+    function onFailure(err) {
+      if (!autoRetried) {
+        autoRetried = true;
+        setTimeout(function () { gasCall('getConfig', { guestId: GUEST_ID }, onSuccess, onFailure); }, 1500);
+        return;
+      }
+      showError((err && err.message) ? err.message : 'Si è verificato un errore. Riprova.');
+    }
+
+    gasCall('getConfig', { guestId: GUEST_ID }, onSuccess, onFailure);
+  }
+
+  function openEnvelopeAndReveal() {
+    if (isOpening) return;
+    isOpening = true;
+    document.getElementById('lock-hint').hidden = true;
+    // Con "riduci movimento" attivo la busta si apre quasi subito (le transizioni CSS sono già azzerate).
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var T = reduceMotion ? 0.1 : 1;
+    // La musica parte con il tocco sul sigillo (gesto diretto dell'ospite, richiesto dai browser).
+    // Se il play viene bloccato, il FAB ♪ pulsa visibilmente per invitare al click.
+    var audio = document.getElementById('bg-audio');
+    var fab   = document.getElementById('fab-audio');
+
+    if (audio && audio.src) {
+      audioStartedByUser = true;
+      audio.play().then(function () {
+        if (fab) {
+          fab.classList.remove('attention');
+          fab.classList.add('playing');
+          fab.textContent = '♫';
+        }
+      }).catch(function () {
+        if (fab) {
+          fab.classList.add('attention-strong');
+          fab.title = 'Tocca per avviare la musica';
+        }
+      });
+    }
+
+    document.getElementById('lock-retry').hidden = true;
+    var seal = document.getElementById('env-seal');
+    var envelope = document.getElementById('envelope');
+    var app = document.getElementById('app');
+    var lock = document.getElementById('lock');
+    var phoneContent = document.getElementById('phone-content');
+
+    // Blocco dello scroll del viewport (come da PRD)
+    if (phoneContent) phoneContent.style.overflowY = 'hidden';
+    document.body.style.overflow = 'hidden';
+
+    // Stato 1 (Rottura Sigillo e Apertura Busta): Avvengono insieme
+    seal.classList.add('broken');
+    envelope.classList.add('open');
+
+    // Stato 2 (Estrazione): La finta lettera esce dalla busta dopo che l'aletta si è sollevata un po' (600ms)
+    setTimeout(function () {
+      envelope.classList.add('pull-letter');
+
+      // Stato 3 (Transizione): La vera app prende il posto della lettera dopo 1.2s
+      setTimeout(function () {
+        app.hidden = false;
+        app.style.zIndex = '60'; // emerge sopra il lock (z-index: 50)
+        app.classList.add('letter-start');
+
+        // Lancia i confetti appena appare la vera pagina
+        fireSideConfetti();
+
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            app.classList.remove('letter-start');
+            app.classList.add('letter-reveal');
+            lock.classList.add('hide'); // fade-out del lock in parallelo allo slide-up
+
+            setTimeout(function () {
+              lock.style.display = 'none';
+              app.style.zIndex = '';
+              if (phoneContent) phoneContent.style.overflowY = 'auto';
+              document.body.style.overflow = '';
+              app.classList.remove('letter-reveal');
+              wireScrollAnimations();
+            }, 1200 * T);
+          });
+        });
+      }, 1200 * T);
+    }, 600 * T);
+  }
+
+  // ---------------- Render ----------------
+
+  function render(res) {
+    var c = res.config || {};
+
+    // Hero
+    setText('titolo-sposi', c.titoloSposi);
+    setText('data-nozze', formatDataNozze(c.dataNozze, c.oraNozze));
+    setText('testo-partecipazione', c.testoPartecipazione);
+
+    var logoUrl = c.logoUrl || LOGO_URL;
+    if (logoUrl) {
+      var img = document.getElementById('logo-img');
+      img.src = logoUrl;
+      document.getElementById('logo-wrap').hidden = false;
+    } else {
+      document.getElementById('logo-wrap').hidden = true;
+    }
+
+    // Famiglie (gated)
+    buildFamiglia(c);
+
+    // Galleria (gated)
+    buildGalleria(res.galleria || [], c);
+
+    // Cerimonia (gated)
+    var cerimoniaSec = document.getElementById('cerimonia');
+    if (c.attivaCerimonia) {
+      cerimoniaSec.hidden = false;
+      setText('ora-cerimonia', c.oraCerimonia ? 'Ore ' + c.oraCerimonia : '');
+      setText('chiesa-nome', c.chiesaNome);
+      setText('chiesa-indirizzo', c.chiesaIndirizzo);
+      setLink('chiesa-maps', mapsLink(c.chiesaMaps, c.chiesaNome, c.chiesaIndirizzo));
+      gatePdf('libretto', 'libretto-soon', c.pdfAttivi, c.librettoPdfUrl);
+    } else {
+      cerimoniaSec.hidden = true;
+    }
+
+    // Ricevimento (gated)
+    var ricevimentoSec = document.getElementById('ricevimento');
+    if (c.attivaRicevimento) {
+      ricevimentoSec.hidden = false;
+      setText('ora-ricevimento', c.oraRicevimento ? 'Ore ' + c.oraRicevimento : '');
+      setText('ristorante-nome', c.ristoranteNome);
+      setText('ristorante-indirizzo', c.ristoranteIndirizzo);
+      setLink('ristorante-maps', mapsLink(c.ristoranteMaps, c.ristoranteNome, c.ristoranteIndirizzo));
+      gatePdf('menu', 'menu-soon', c.pdfAttivi, c.menuPdfUrl);
+
+      // Trova tavolo: prima dell'attivazione la scheda resta visibile e annuncia quando arriverà.
+      // I tavoli possono uscire in momenti diversi: chi non ce l'ha ancora riceve "non ancora assegnato".
+      var tavoloSoon = document.getElementById('tavolo-soon');
+      if (c.attivaTavolo) {
+        tavoloSoon.hidden = true;
+        document.getElementById('tavolo-form').hidden = false;
+        wireTavolo();
+      } else {
+        document.getElementById('tavolo-form').hidden = true;
+        tavoloSoon.textContent = c.tavoloDal
+          ? 'La ricerca del tavolo sarà disponibile dal ' + formatDataNozze(c.tavoloDal) + '.'
+          : 'La ricerca del tavolo sarà disponibile più vicino al giorno del matrimonio.';
+        tavoloSoon.hidden = false;
+      }
+    } else {
+      ricevimentoSec.hidden = true;
+    }
+
+    // Programma giornata (gated)
+    buildProgramma(res.programma || [], c);
+
+    // Calendario
+    document.getElementById('cal-apple').href = EXEC_URL + '?action=ics';
+    if (c.googleCalendarUrl) document.getElementById('cal-google').href = c.googleCalendarUrl;
+
+    // Regalo: sempre visibile; la parola si chiede solo per mostrare l'IBAN.
+    setText('frase-regalo', c.fraseRegalo);
+    wireIban();
+
+    // Dress code (gated)
+    buildDressCode(c);
+
+    // RSVP con tracciamento Guest (gated)
+    var rsvpSec = document.getElementById('rsvp-sec');
+    if (c.attivaRsvp && c.rsvpChiuso) {
+      // Dopo il giorno delle nozze: niente modulo, solo un ringraziamento.
+      rsvpSec.hidden = false;
+      document.getElementById('rsvp-deadline').hidden = true;
+      document.getElementById('rsvp-container').hidden = true;
+      document.getElementById('rsvp-closed').hidden = false;
+    } else if (c.attivaRsvp) {
+      rsvpSec.hidden = false;
+      if (c.scadenzaRsvp) setText('rsvp-deadline', 'Conferma entro il ' + c.scadenzaRsvp + '.');
+      wireRsvp();
+    } else {
+      rsvpSec.hidden = true;
+    }
+
+    // Audio
+    if (c.audioUrl) wireAudio(c.audioUrl);
+
+    setText('footer-text', c.testoFooter);
+
+    // Viaggi (gated)
+    var viaggiSec = document.getElementById('viaggi');
+    if (c.attivaViaggi) {
+      viaggiSec.hidden = false;
+      buildTimeline(res.trips || []);
+    } else {
+      viaggiSec.hidden = true;
+    }
+
+    startCountdown(c.weddingEpochMs);
+
+    // Condividi foto e FAB foto: aperta nella finestra di caricamento, prima annuncia da quando, dopo ringrazia.
+    var fotoSec = document.getElementById('foto');
+    var fabFoto = document.getElementById('fab-foto');
+    var fotoClosed = document.getElementById('foto-closed');
+    var fotoStato = c.fotoStato || (c.attivaFoto ? 'aperta' : 'spenta');
+    fotoSec.hidden = fotoStato === 'spenta';
+    if (fabFoto) fabFoto.hidden = fotoStato !== 'aperta';
+    fotoSec.querySelector('.foto-actions').hidden = fotoStato !== 'aperta';
+    document.getElementById('foto-sub').hidden = fotoStato !== 'aperta';
+    fotoClosed.hidden = fotoStato === 'aperta' || fotoStato === 'spenta';
+    if (fotoStato === 'aperta') {
+      wireFoto();
+    } else if (fotoStato === 'presto') {
+      fotoClosed.textContent = c.fotoDal
+        ? 'Dal ' + formatDataNozze(c.fotoDal) + ' potrai condividere qui le tue foto: arriveranno direttamente a noi.'
+        : 'Presto potrai condividere qui le tue foto.';
+    } else if (fotoStato === 'chiusa') {
+      fotoClosed.textContent = 'Il caricamento delle foto è terminato. Grazie a tutti!';
+    }
+
+    restripeSections();
+  }
+
+  // Sfondi alternati sulle sole sezioni visibili: spegnere una sezione non deve affiancare due fasce uguali.
+  function restripeSections() {
+    var n = 0;
+    document.querySelectorAll('#app > .section:not(.hero)').forEach(function (sec) {
+      if (sec.hidden) return;
+      sec.classList.toggle('alt', n % 2 === 0);
+      n++;
+    });
+  }
+
+  // ---------------- Regalo: la parola d'accesso serve solo qui ----------------
+
+  // L'IBAN non è nella configurazione iniziale: si richiede al server solo dopo la verifica della parola.
+  // Chi ha usato un link/QR con ?pw= la ha già in memoria; tutti gli altri la digitano qui.
+  function wireIban() {
+    var btn   = document.getElementById('btn-mostra-iban');
+    var form  = document.getElementById('iban-pw-form');
+    var input = document.getElementById('iban-pw');
+    var sub   = document.getElementById('iban-pw-btn');
+    var err   = document.getElementById('iban-error');
+    if (!btn || !form) return;
+
+    function showError(msg) { err.textContent = msg; err.hidden = false; }
+
+    function load(pw) {
+      err.hidden = true;
+      btn.disabled = true; sub.disabled = true;
+      gasCall('getIbanDetails', { password: pw, guestId: GUEST_ID },
+        function (res) {
+          btn.disabled = false; sub.disabled = false;
+          if (res && res.ok) {
+            PASSWORD = pw;
+            btn.hidden = true; form.hidden = true;
+            document.getElementById('iban-container').hidden = false;
+            setText('iban', res.iban ? res.iban.replace(/(.{4})/g, '$1 ').trim() : '');
+            setText('intestatario', res.intestatario);
+            setText('causale', res.causale);
+            document.getElementById('iban-copy').onclick = function () { copyText(res.iban, this); };
+          } else if (res && res.error === 'troppi-tentativi') {
+            showError('Troppi tentativi in poco tempo. Riprova tra un minuto.');
+          } else if (res && res.error === 'password') {
+            PASSWORD = '';   // parola del link sbagliata: d'ora in poi la si chiede
+            form.hidden = false; input.focus();
+            showError('Parola non corretta, riprova.');
+          } else {
+            showError('Non riusciamo a recuperare i dati. Riprova tra un istante.');
+          }
+        },
+        function (e) {
+          btn.disabled = false; sub.disabled = false;
+          showError((e && e.message) || 'Errore di connessione. Riprova.');
+        }
+      );
+    }
+
+    btn.onclick = function () {
+      if (PASSWORD) { load(PASSWORD); return; }
+      form.hidden = false; err.hidden = true; input.focus();
+    };
+    form.onsubmit = function (e) {
+      e.preventDefault();
+      var pw = input.value.trim();
+      if (!pw) return;
+      load(pw);
+    };
+  }
+
+  // ---------------- Geolocalizzazione Nativa Scheme ----------------
+
+  // Il link scelto dagli sposi in Config (ChiesaMaps / RistoranteMaps) punta al luogo esatto:
+  // ha la precedenza su quello ricostruito da nome e indirizzo.
+  function mapsLink(configUrl, locationName, address) {
+    if (/^https:\/\//.test(configUrl || '')) return configUrl;
+    return getMapsUrl(locationName, address);
+  }
+
+  function getMapsUrl(locationName, address) {
+    if (!address) return '#';
+    var query = encodeURIComponent(locationName + ', ' + address);
+    var ua = navigator.userAgent || '';
+    // iPhone, iPad (iPadOS si presenta come "Macintosh") e Mac: Apple Maps. Altrove Google Maps.
+    // Link https invece di maps:// o geo:, che con target=_blank possono lasciare una scheda vuota.
+    if (/iPhone|iPad|iPod|Macintosh/.test(ua)) {
+      return 'https://maps.apple.com/?q=' + query;
+    }
+    return 'https://www.google.com/maps/search/?api=1&query=' + query;
+  }
+
+
+  // ---------------- Famiglie ----------------
+
+  function buildFamiglia(c) {
+    var sec = document.getElementById('famiglia');
+    if (!c.attivaFamiglia || (!c.famigliaSposa && !c.famigliaSposo)) { sec.hidden = true; return; }
+    sec.hidden = false;
+    setText('genitori-frase', c.genitoriFrase);
+
+    // Config: "Famiglia Fevola · Famiglia Monti" (prima il padre, poi la madre). Si mostrano i soli cognomi.
+    function cognomi(testo) {
+      return String(testo || '').split('·')
+        .map(function (p) { return p.trim().replace(/^famiglia\s+/i, ''); })
+        .filter(Boolean);
+    }
+    var sposa = cognomi(c.famigliaSposa), sposo = cognomi(c.famigliaSposo);
+    var righe = Math.max(sposa.length, sposo.length, 1);
+
+    var grid = document.getElementById('famiglie');
+    var sep = grid.querySelector('.famiglia-sep');
+    grid.querySelectorAll('.famiglia-nome-item').forEach(function (n) { n.remove(); });
+    sep.style.gridColumn = '2';
+    sep.style.gridRow = '1 / span ' + righe;
+    for (var r = 0; r < righe; r++) {
+      [[sposa, '1', 'sposa'], [sposo, '3', 'sposo']].forEach(function (lato) {
+        var nome = el('div', 'famiglia-nome-item', lato[0][r] || '');
+        nome.dataset.lato = lato[2];
+        nome.style.gridColumn = lato[1];
+        nome.style.gridRow = String(r + 1);
+        grid.appendChild(nome);
+      });
+    }
+  }
+
+  // ---------------- Galleria ----------------
+
+  function buildGalleria(photos, c) {
+    var sec      = document.getElementById('galleria');
+    var carousel = document.getElementById('galleria-carousel');
+    var dotsWrap = document.getElementById('galleria-dots');
+    clear(carousel);
+    clear(dotsWrap);
+    photos = photos.filter(function (p) { return p.url; });
+    if (!c.attivaGalleria || !photos.length) { sec.hidden = true; return; }
+    sec.hidden = false;
+
+    photos.forEach(function (p) {
+      var item = el('div', 'galleria-item');
+      if (p.url) {
+        var img = document.createElement('img');
+        img.className = 'galleria-img';
+        img.loading   = 'lazy';
+        img.alt       = p.didascalia || '';
+        img.src       = p.url;
+        item.appendChild(img);
+      } else {
+        var placeholder = el('div', 'galleria-placeholder');
+        placeholder.appendChild(el('div', 'galleria-placeholder-icon', '📷'));
+        placeholder.appendChild(el('div', '', p.didascalia || 'Foto in arrivo'));
+        item.appendChild(placeholder);
+      }
+      if (p.didascalia && p.url) {
+        item.appendChild(el('div', 'galleria-didascalia', p.didascalia));
+      }
+      carousel.appendChild(item);
+    });
+
+    if (photos.length > 1) {
+      photos.forEach(function (_, i) {
+        var dot = el('span', 'galleria-dot' + (i === 0 ? ' active' : ''));
+        dot.addEventListener('click', function() {
+          var items = carousel.querySelectorAll('.galleria-item');
+          if (items[i]) {
+            carousel.scrollTo({
+              left: items[i].offsetLeft - 24,
+              behavior: 'smooth'
+            });
+          }
+        });
+        dotsWrap.appendChild(dot);
+      });
+
+      carousel.addEventListener('scroll', function () {
+        var items = carousel.querySelectorAll('.galleria-item');
+        if (!items.length) return;
+        var w = items[0].offsetWidth + 16; // Larghezza item + gap
+        var idx = Math.min(Math.round(carousel.scrollLeft / w), photos.length - 1);
+        dotsWrap.querySelectorAll('.galleria-dot').forEach(function (d, i) {
+          d.classList.toggle('active', i === idx);
+        });
+      }, { passive: true });
+    }
+  }
+
+  // ---------------- Programma giornata ----------------
+
+  function buildProgramma(steps, c) {
+    var sec = document.getElementById('programma');
+    var box = document.getElementById('programma-list');
+    clear(box);
+    var soon = document.getElementById('programma-soon');
+    soon.hidden = true;
+    if (!c.attivaProgramma && c.programmaDal) {
+      soon.textContent = 'Il programma della giornata sarà disponibile dal ' + formatDataNozze(c.programmaDal) + '.';
+      soon.hidden = false;
+      sec.hidden = false;
+      return;
+    }
+    if (!c.attivaProgramma || !steps.length) { sec.hidden = true; return; }
+    sec.hidden = false;
+
+    steps.forEach(function (s) {
+      var step = el('div', 'programma-step');
+      step.appendChild(el('div', 'programma-ora', s.ora));
+      var info = el('div', 'programma-info');
+      var header = el('div', 'programma-header');
+      if (s.icona) header.appendChild(el('span', 'programma-icona', s.icona));
+      header.appendChild(el('h4', 'programma-titolo', s.titolo));
+      info.appendChild(header);
+      step.appendChild(info);
+      box.appendChild(step);
+    });
+  }
+
+  // ---------------- Dress code ----------------
+
+  function buildDressCode(c) {
+    var sec = document.getElementById('dresscode');
+    if (!c.attivaDressCode || !c.dressCode) { sec.hidden = true; return; }
+    sec.hidden = false;
+    setText('dresscode-testo', c.dressCode);
+    setText('dresscode-sub', c.dressCodeSottotitolo);
+
+    var regole = document.getElementById('dresscode-regole');
+    clear(regole);
+
+    var dcard = el('div', 'regola-card');
+    dcard.appendChild(el('div', 'regola-icona', '👔'));
+    dcard.appendChild(el('div', 'regola-testo', 'Abbigliamento Formale'));
+    regole.appendChild(dcard);
+
+    if (c.noBambini) {
+      var card = el('div', 'regola-card');
+      card.appendChild(el('div', 'regola-icona', '🚫'));
+      card.appendChild(el('div', 'regola-testo', 'Cerimonia solo Adulti'));
+      regole.appendChild(card);
+    }
+  }
+
+  // ---------------- RSVP Guest Tracking & Cap ----------------
+
+  function wireRsvp() {
+    var guestId = (typeof GUEST_ID !== 'undefined') ? GUEST_ID : '';
+    if (guestId) {
+      gasCall('getGuestInfo', { guestId: guestId },
+        function (res) {
+          if (res && res.ok) {
+            if (res.famiglia) {
+              setText('rsvp-title', 'Invito per la ' + res.famiglia);
+            }
+            buildRsvpSelect(res.maxOspiti || 6);
+          } else {
+            buildRsvpSelect(6);
+          }
+        },
+        function () { buildRsvpSelect(6); }
+      );
+    } else {
+      buildRsvpSelect(6);
+    }
+
+    document.getElementById('rsvp-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitRsvpForm();
+    });
+  }
+
+  function buildRsvpSelect(max) {
+    var sel = document.getElementById('rsvp-persone');
+    clear(sel);
+    var ph = document.createElement('option');
+    ph.value = ''; ph.textContent = 'Seleziona numero partecipanti...';
+    ph.disabled = true; ph.selected = true;
+    sel.appendChild(ph);
+    for (var i = 1; i <= max; i++) {
+      var opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = i + (i === 1 ? ' persona' : ' persone');
+      sel.appendChild(opt);
+    }
+  }
+
+  function submitRsvpForm() {
+    var btn      = document.getElementById('rsvp-btn');
+    var errEl    = document.getElementById('rsvp-error');
+    var nome     = document.getElementById('rsvp-nome').value.trim();
+    var telefono = document.getElementById('rsvp-telefono').value.trim();
+    var numPers  = document.getElementById('rsvp-persone').value;
+    var msg      = document.getElementById('rsvp-messaggio').value.trim();
+
+    errEl.hidden = true;
+    if (!nome || !telefono || !numPers) {
+      errEl.textContent = 'Compila tutti i campi obbligatori.';
+      errEl.hidden = false;
+      return;
+    }
+
+    // Honeypot anti-bot: se il campo nascosto è compilato, finge successo senza inviare
+    var hpField = document.getElementById('rsvp-website');
+    if (hpField && hpField.value) {
+      document.getElementById('rsvp-form').hidden = true;
+      document.getElementById('rsvp-success').hidden = false;
+      setText('rsvp-success-text', 'Presenza confermata. Non vediamo l\'ora di festeggiare con voi!');
+      return;
+    }
+
+    // Prevenzione multi-submit e feedback spinner
+    btn.disabled = true;
+    btn.textContent = '';
+    var spinner = document.createElement('span');
+    spinner.className = 'rsvp-spinner';
+    btn.appendChild(spinner);
+    btn.appendChild(document.createTextNode('Invio in corso...'));
+
+    var guestId = (typeof GUEST_ID !== 'undefined') ? GUEST_ID : '';
+
+    gasCall('submitRsvp', { guestId: guestId, nome: nome, telefono: telefono, numPersone: numPers, messaggio: msg, honeypot: (document.getElementById('rsvp-website') || {}).value || '' },
+      function (res) {
+        btn.disabled = false;
+        btn.textContent = 'Conferma la presenza';
+        if (res && res.ok) {
+          document.getElementById('rsvp-form').hidden = true;
+          document.getElementById('rsvp-success').hidden = false;
+          var n = Number(numPers);
+          setText('rsvp-success-text',
+            'Presenza confermata per ' + n + (n === 1 ? ' persona.' : ' persone.') +
+            ' Non vediamo l\'ora di festeggiare con voi!');
+        } else if (res && res.error === 'chiuso') {
+          // Pagina rimasta aperta oltre il giorno delle nozze: il server non accetta più conferme.
+          document.getElementById('rsvp-container').hidden = true;
+          document.getElementById('rsvp-deadline').hidden = true;
+          document.getElementById('rsvp-closed').hidden = false;
+        } else {
+          errEl.textContent = res && res.error === 'troppi-tentativi'
+            ? 'Molte conferme in questo momento: riprova tra un minuto.'
+            : 'Si è verificato un errore. Riprova.';
+          errEl.hidden = false;
+        }
+      },
+      function () {
+        btn.disabled = false;
+        btn.textContent = 'Conferma la presenza';
+        errEl.textContent = 'Errore di connessione. Riprova tra un istante.';
+        errEl.hidden = false;
+      }
+    );
+  }
+
+  // ---------------- Audio Player FAB ----------------
+
+  function wireAudio(url) {
+    if (!url) return;
+    var fab   = document.getElementById('fab-audio');
+    var audio = document.getElementById('bg-audio');
+    // Confronto tra URL assoluti: in Config il percorso è "./mp3/audio.mp3", sull'elemento "mp3/audio.mp3".
+    // Riassegnare src ricarica l'audio e annulla download e sblocco già ottenuti.
+    var absolute = new URL(url, window.location.href).href;
+    if (audio.src !== absolute) {
+      audio.src = url;
+    }
+    fab.hidden = false;
+
+    // Pulsazione iniziale di attenzione (browser richiede interazione utente per avviare l'audio)
+    fab.classList.add('attention');
+
+    fab.addEventListener('click', function () {
+      if (audio.paused) {
+        audioStartedByUser = true;
+        audio.play().then(function () {
+          fab.classList.remove('attention');
+          fab.classList.add('playing');
+          fab.textContent = '♫';
+        }).catch(function (err) {
+          console.log("Autoplay impedito dal browser", err);
+        });
+      } else {
+        audio.pause();
+        fab.classList.remove('playing');
+        fab.classList.add('attention');
+        fab.textContent = '♪';
+      }
+    });
+  }
+
+  function gatePdf(linkId, soonId, attivi, url) {
+    var link = document.getElementById(linkId);
+    var soon = document.getElementById(soonId);
+    if (attivi && url) {
+      link.href = url;
+      link.hidden = false;
+      soon.hidden = true;
+    } else {
+      link.hidden = true;
+      soon.hidden = false;
+    }
+  }
+
+  function buildTimeline(trips) {
+    var box = document.getElementById('timeline');
+    clear(box);
+    trips.forEach(function (t, idx) {
+      var isFinal = (idx === trips.length - 1);
+      var stop = el('div', 'stop' + (isFinal ? ' final' : ''));
+      stop.appendChild(el('p', 'stop-periodo', t.periodo || ''));
+      stop.appendChild(el('h3', 'stop-luogo', t.luogo || ''));
+      if (t.testo) stop.appendChild(el('p', 'stop-testo', t.testo));
+      if (t.foto) {
+        var img = document.createElement('img');
+        img.className = 'stop-foto';
+        img.loading = 'lazy';
+        img.alt = t.luogo || 'viaggio';
+        img.src = t.foto;
+        stop.appendChild(img);
+      } else if (isFinal) {
+        stop.appendChild(el('span', 'stop-mark', '?'));
+      }
+      box.appendChild(stop);
+    });
+  }
+
+  // ---------------- Countdown (Stabilità orizzontale e Transizione Slide) ----------------
+
+  function startCountdown(targetMs) {
+    if (cdTimer) clearInterval(cdTimer);
+    if (!targetMs) return;
+    tick();
+    cdTimer = setInterval(tick, 1000);
+
+    function tick() {
+      var diff = targetMs - Date.now();
+      if (diff <= 0) {
+        clearInterval(cdTimer);
+        var cd = document.getElementById('countdown');
+        clear(cd);
+        var p = el('p', '', 'Oggi è il giorno! ❤');
+        p.style.cssText = 'font-family:var(--serif);font-size:1.8rem;color:var(--terracotta);margin:0';
+        cd.appendChild(p);
+        return;
+      }
+      var s = Math.floor(diff / 1000);
+      var days = Math.floor(s / 86400);
+      var hours = pad(Math.floor((s % 86400) / 3600));
+      var mins = pad(Math.floor((s % 3600) / 60));
+      var secs = pad(s % 60);
+
+      // Aggiornamento cifre con transizione fluida se variate
+      updateDigit('cd-days', String(days));
+      updateDigit('cd-hours', String(hours));
+      updateDigit('cd-mins', String(mins));
+      updateDigit('cd-secs', String(secs), true);
+    }
+  }
+
+  function updateDigit(id, newValue, noAnim) {
+    var span = document.getElementById(id);
+    if (!span) return;
+    if (prevDigits[id] !== newValue) {
+      prevDigits[id] = newValue;
+      span.textContent = newValue;
+      if (noAnim) return;
+
+      // Innesco animazione verticale GPU-accelerata
+      span.classList.remove('cd-digit-slide');
+      void span.offsetWidth; // Forza reflow
+      span.classList.add('cd-digit-slide');
+    }
+  }
+
+  // ---------------- Trova tavolo ----------------
+
+  function wireTavolo() {
+    document.getElementById('tavolo-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nome = document.getElementById('tavolo-input').value.trim();
+      var out = document.getElementById('tavolo-result');
+      if (!nome) return;
+      out.hidden = false;
+      out.className = 'tavolo-result';
+      out.textContent = 'Cerco...';
+      gasCall('findTable', { nome: nome },
+        function (res) { showTavolo(res, out); },
+        function () {
+          out.className = 'tavolo-result err';
+          out.textContent = 'Errore di rete, riprova.';
+        }
+      );
+    });
+  }
+
+  function showTavolo(res, out) {
+    clear(out);
+    if (!res || !res.ok) {
+      out.className = 'tavolo-result err';
+      out.textContent = res && res.error === 'troppi-tentativi'
+        ? 'Troppi tentativi in poco tempo. Riprova tra un minuto.' : 'Errore, riprova.';
+      return;
+    }
+    if (res.status === 'found') {
+      var m = res.match;
+      out.className = 'tavolo-result';
+      if (/^\d+$/.test(m.tavolo)) {
+        out.appendChild(el('span', '', m.nome + ', il tuo tavolo è il'));
+        out.appendChild(el('span', 'big', m.nomeTavolo ? (m.tavolo + ' · ' + m.nomeTavolo) : m.tavolo));
+      } else {
+        // Tavolo non numerico (es. "Sposi"): si mostra così com'è, senza "il tuo tavolo è il".
+        out.appendChild(el('span', '', m.nome + ', il tuo posto è al'));
+        out.appendChild(el('span', 'big', /^sposi$/i.test(m.tavolo) ? 'Tavolo degli sposi' : m.tavolo));
+      }
+    } else if (res.status === 'unassigned') {
+      out.className = 'tavolo-result';
+      out.appendChild(el('span', '', res.match.nome + ', il tuo tavolo non è ancora stato assegnato.'));
+      out.appendChild(el('span', '', 'Torna a controllare più avanti.'));
+    } else if (res.status === 'ambiguous') {
+      out.className = 'tavolo-result err';
+      out.textContent = 'Ci sono più persone con questo nome: aggiungi anche il cognome.';
+    } else if (res.status === 'notfound') {
+      out.className = 'tavolo-result err';
+      out.textContent = 'Nome non trovato. Controlla come è scritto (nome e cognome).';
+    } else if (res.status === 'short') {
+      out.className = 'tavolo-result err';
+      out.textContent = 'Scrivi almeno 3 lettere del nome.';
+    } else {
+      out.className = 'tavolo-result err';
+      out.textContent = 'Scrivi il tuo nome.';
+    }
+  }
+
+  // ---------------- Foto ----------------
+
+  function wireFoto() {
+    var input = document.getElementById('foto-input');
+    input.addEventListener('change', function () {
+      var files = Array.prototype.slice.call(input.files || []);
+      input.value = '';
+      if (!files.length) return;
+      uploadQueue(files, 0, { ok: 0, ko: 0, total: files.length });
+    });
+
+    var fabFoto = document.getElementById('fab-foto');
+    if (fabFoto) {
+      fabFoto.addEventListener('click', function (e) {
+        e.preventDefault();
+        input.click();
+      });
+    }
+  }
+
+  function uploadQueue(files, i, stats) {
+    var status = document.getElementById('foto-status');
+    if (i >= files.length) {
+      clear(status);
+      status.appendChild(el('span', 'ok',
+        'Caricate ' + stats.ok + ' foto su ' + stats.total + '. Grazie! ❤'));
+      if (stats.ko) {
+        status.appendChild(document.createElement('br'));
+        status.appendChild(el('span', 'ko',
+          stats.ko + ' non caricate (formato o dimensione).'));
+      }
+      return;
+    }
+    clear(status);
+    status.appendChild(el('span', '', 'Carico foto ' + (i + 1) + ' di ' + stats.total + '...'));
+    compressImage(files[i], function (dataUrl) {
+      if (!dataUrl) { stats.ko++; uploadQueue(files, i + 1, stats); return; }
+      gasCall('uploadPhoto', { guestId: GUEST_ID, dataUrl: dataUrl, filename: files[i].name },
+        function (res) {
+          if (res && res.ok) stats.ok++; else stats.ko++;
+          if (res && (res.error === 'troppi-upload' || res.error === 'spazio-esaurito' || res.error === 'disattivato')) {
+            // Limite raggiunto (o caricamento chiuso) lato server: inutile proseguire con le altre foto.
+            clear(status);
+            var motivo = res.error === 'troppi-upload'
+              ? 'Abbiamo ricevuto tantissime foto in poco tempo! Riprova con le altre tra un\'ora.'
+              : res.error === 'spazio-esaurito' ? 'L\'archivio delle foto è pieno: consegnaci le altre di persona, grazie!'
+              : 'Il caricamento delle foto è chiuso.';
+            status.appendChild(el('span', 'ko', 'Caricate ' + stats.ok + ' su ' + stats.total + '. ' + motivo));
+            return;
+          }
+          uploadQueue(files, i + 1, stats);
+        },
+        function () { stats.ko++; uploadQueue(files, i + 1, stats); }
+      );
+    });
+  }
+
+  function compressImage(file, cb) {
+    if (!file.type || file.type.indexOf('image/') !== 0) { cb(null); return; }
+    var reader = new FileReader();
+    reader.onload = function () {
+      var img = new Image();
+      img.onload = function () {
+        var max = 1600;
+        var w = img.width, h = img.height;
+        if (w > h && w > max) { h = Math.round(h * max / w); w = max; }
+        else if (h >= w && h > max) { w = Math.round(w * max / h); h = max; }
+        var canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        try { cb(canvas.toDataURL('image/jpeg', 0.82)); }
+        catch (e) { cb(null); }
+      };
+      img.onerror = function () { cb(null); };
+      img.src = reader.result;
+    };
+    reader.onerror = function () { cb(null); };
+    reader.readAsDataURL(file);
+  }
+
+  // ---------------- Intersection Observer con Staggering Delay ----------------
+
+  function wireScrollAnimations() {
+    var sections = document.querySelectorAll('.section');
+    var groupContainers = [
+      '#programma-list',
+      '#timeline',
+      '#dresscode-regole',
+      '.famiglie',
+      '#galleria-carousel'
+    ];
+
+    if (!window.IntersectionObserver) {
+      // Fallback per browser datati
+      document.querySelectorAll('.section, .stop, .regola-card, .galleria-item, .programma-step').forEach(function(el) {
+        el.classList.add('visible');
+      });
+      return;
+    }
+
+    // 1. Observer per le sezioni principali
+    var sectionObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          sectionObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+    sections.forEach(function(sec) {
+      sec.classList.add('anim');
+      sectionObserver.observe(sec);
+    });
+
+    // 2. Observer con effetto staggered delay per elementi sequenziali contigui
+    groupContainers.forEach(function(selector) {
+      var container = document.querySelector(selector);
+      if (!container) return;
+
+      var items = container.children;
+      if (!items || items.length === 0) return;
+
+      var itemObserver = new IntersectionObserver(function(entries) {
+        var visibleIndex = 0;
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var el = entry.target;
+            // Impostiamo il ritardo staggered dinamico basato sull'ordine d'ingresso visivo
+            el.style.transitionDelay = (visibleIndex * 60) + 'ms';
+            el.classList.add('visible');
+            itemObserver.unobserve(el);
+            visibleIndex++;
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+
+      Array.prototype.forEach.call(items, function(item) {
+        item.classList.add('anim');
+        itemObserver.observe(item);
+      });
+    });
+  }
+
+  // ---------------- Utility ----------------
+
+  function el(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text != null) node.textContent = text;
+    return node;
+  }
+
+  function clear(node) {
+    while (node && node.firstChild) node.removeChild(node.firstChild);
+  }
+
+  function setText(id, value) {
+    var node = document.getElementById(id);
+    if (node) node.textContent = (value == null ? '' : value);
+  }
+
+  function setLink(id, href) {
+    var node = document.getElementById(id);
+    if (!node) return;
+    if (href) { node.href = href; node.hidden = false; }
+    else { node.hidden = true; }
+  }
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+
+  function formatDataNozze(iso, ora) {
+    if (!iso) return '';
+    var parts = iso.split('-');
+    if (parts.length !== 3) return iso;
+    var mesi = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno',
+      'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+    var giorno = Number(parts[2]);
+    var out = (giorno === 1 ? '1°' : giorno) + ' ' + (mesi[Number(parts[1]) - 1] || '') + ' ' + parts[0];
+    if (ora) out += ' · ore ' + ora;
+    return out;
+  }
+
+  function copyText(text, btn) {
+    var done = function () {
+      var old = btn.textContent;
+      btn.textContent = 'Copiato!';
+      setTimeout(function () { btn.textContent = old; }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text, done); });
+    } else {
+      fallbackCopy(text, done);
+    }
+  }
+
+  function fallbackCopy(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  function fireSideConfetti() {
+    if (typeof window.confetti !== 'function') {
+      console.warn("Libreria confetti non trovata!");
+      return;
+    }
+
+    var duration = 3000;
+    var animationEnd = Date.now() + duration;
+    var defaults = { startVelocity: 45, spread: 90, ticks: 150, zIndex: 999999, disableForReducedMotion: true };
+
+    var interval = setInterval(function() {
+      var timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      var particleCount = Math.max(10, Math.floor(50 * (timeLeft / duration)));
+
+      // Cannone a sinistra
+      window.confetti(Object.assign({}, defaults, {
+        particleCount: particleCount,
+        angle: 60,
+        origin: { x: 0, y: 0.8 }
+      }));
+
+      // Cannone a destra
+      window.confetti(Object.assign({}, defaults, {
+        particleCount: particleCount,
+        angle: 120,
+        origin: { x: 1, y: 0.8 }
+      }));
+    }, 250);
+  }
+
+})();
+</script>
+
+</body>
+</html>
